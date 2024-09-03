@@ -10,9 +10,11 @@
         let theme = localStorage.getItem("meek_theme") || "light";
         document.documentElement.setAttribute("data-color-mode", theme);
     </script>
-<meta name="description" content="这道题刚开始想从叶子节点开始向根方向搜索，很难写，状态不好存，遂看了几篇题解，选择了树形dp的做法。">
+<meta name="description" content="题目链接：https://codeforces.com/problemset/problem/1997/D
+这道题刚开始想从叶子节点开始向根方向搜索，很难写，状态不好存，遂看了几篇题解，选择了树形dp的做法。">
 <meta property="og:title" content="D. Maximize the Root（Educational Codeforces Round 168 (Rated for Div. 2)）">
-<meta property="og:description" content="这道题刚开始想从叶子节点开始向根方向搜索，很难写，状态不好存，遂看了几篇题解，选择了树形dp的做法。">
+<meta property="og:description" content="题目链接：https://codeforces.com/problemset/problem/1997/D
+这道题刚开始想从叶子节点开始向根方向搜索，很难写，状态不好存，遂看了几篇题解，选择了树形dp的做法。">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://sssuer77.github.io/post/D.%20Maximize%20the%20Root%EF%BC%88Educational%20Codeforces%20Round%20168%20%28Rated%20for%20Div.%202%29%EF%BC%89.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/178136927?v=4">
@@ -67,7 +69,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
         </svg>
     </a>
     
-    <a href="https://github.com/sssuer77/sssuer77.github.io/issues/6" target="_blank" class="btn btn-invisible circle" title="Issue">
+    <a href="https://github.com/sssuer77/sssuer77.github.io/issues/7" target="_blank" class="btn btn-invisible circle" title="Issue">
         <svg class="octicon" width="16" height="16">
             <path id="pathIssue" fill-rule="evenodd"></path>
         </svg>
@@ -83,7 +85,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
 </div>
     <div id="content">
-<div class="markdown-body" id="postBody"><p>这道题刚开始想从叶子节点开始向根方向搜索，很难写，状态不好存，遂看了几篇题解，选择了树形dp的做法。<br>
+<div class="markdown-body" id="postBody"><p>题目链接：<a href="https://codeforces.com/problemset/problem/1997/D" rel="nofollow">https://codeforces.com/problemset/problem/1997/D</a><br>
+这道题刚开始想从叶子节点开始向根方向搜索，很难写，状态不好存，遂看了几篇题解，选择了树形dp的做法。<br>
 参考：<a href="https://www.cnblogs.com/zsc985246/p/18333684" rel="nofollow">https://www.cnblogs.com/zsc985246/p/18333684</a><br>
 用链式前向星存下这棵树，从根节点开始深搜，这样保证在访问父节点时他的子节点全部访问过了。用一个数组u存下访问每个节点时他的所有子节点中的最小值mn是多少，在搜到叶子节点时将u赋值为它自己的值；中间节点时若v&gt;mn,将u赋值为mn，若v&lt;mn,将u赋值为(v+mn)/2；到根节点可以简单粗暴直接加上mn作为答案。</p>
 <div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>bits/stdc++.h<span class="pl-pds">&gt;</span></span>
