@@ -1,3 +1,0 @@
-#aabbcc
-##aa
-###aa
