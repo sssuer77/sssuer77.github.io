@@ -91,52 +91,52 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 结合二分，排序后取前k个相加，大于0即可。<br>
 放一道例题：<a href="https://ac.nowcoder.com/acm/problem/14662" rel="nofollow">https://ac.nowcoder.com/acm/problem/14662</a><br>
 AC代码：</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>bits/stdc++.h<span class="pl-pds">&gt;</span></span>
-<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
-<span class="pl-k">typedef</span> <span class="pl-k">long</span> <span class="pl-k">long</span> ll;
+<div class="highlight highlight-source-c++"><pre class="notranslate">#include &lt;bits/stdc++.h&gt;
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> std;
+typedef long long ll;
 
-<span class="pl-k">int</span> c[<span class="pl-c1">10005</span>],v[<span class="pl-c1">10005</span>];
-<span class="pl-k">int</span> n,k;
+int c[10005],v[10005];
+int n,k;
 
-<span class="pl-k">bool</span> <span class="pl-en">check</span>(<span class="pl-k">int</span> x){
-    vector&lt;<span class="pl-k">int</span>&gt; <span class="pl-c1">a</span>(n);
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> i=<span class="pl-c1">0</span>;i&lt;n;i++){
+bool check(int x){
+    vector&lt;int&gt; a(n);
+    for (int i=0;i&lt;n;i++){
         a[i]=v[i]-x*c[i];
     }
-    <span class="pl-c1">sort</span>(a.<span class="pl-c1">begin</span>(),a.<span class="pl-c1">end</span>(),greater&lt;<span class="pl-k">int</span>&gt;());
-    ll sum=<span class="pl-c1">0</span>;
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> i=<span class="pl-c1">0</span>;i&lt;k;i++){
+    sort(a.begin(),a.end(),<span class="pl-en">greater</span>&lt;int&gt;());
+    ll sum=0;
+    for (int i=0;i&lt;k;i++){
         sum+=a[i];
     }
-    <span class="pl-k">if</span> (sum&gt;=<span class="pl-c1">0</span>) <span class="pl-k">return</span> <span class="pl-c1">1</span>;
-    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
+    if (sum&gt;=0) return 1;
+    return 0;
 }
 
-<span class="pl-k">void</span> <span class="pl-en">solve</span>(){
+void solve(){
     cin&gt;&gt;n&gt;&gt;k;
 
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> i=<span class="pl-c1">0</span>;i&lt;n;i++){
+    for (int i=0;i&lt;n;i++){
         cin&gt;&gt;c[i]&gt;&gt;v[i];
     }
-    <span class="pl-k">int</span> l=<span class="pl-c1">0</span>,r=<span class="pl-c1">10004</span>;
-    <span class="pl-k">while</span> (l&lt;r){
-        <span class="pl-k">int</span> mid= l+(r-l)/<span class="pl-c1">2</span>;
-        <span class="pl-k">if</span> (<span class="pl-c1">check</span>(mid)){
-            l=mid+<span class="pl-c1">1</span>;
+    int l=0,r=10004;
+    while (l&lt;r){
+        int mid= l+(r-l)/2;
+        if (check(mid)){
+            l=mid+1;
             
         }
-        <span class="pl-k">else</span>
+        else
         r=mid;
     }
-    cout&lt;&lt;l-<span class="pl-c1">1</span>&lt;&lt;<span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\n</span><span class="pl-pds">'</span></span>;
+    cout&lt;&lt;l-1&lt;&lt;'\n';
     
 }
 
-<span class="pl-k">int</span> <span class="pl-en">main</span>(){
-    <span class="pl-k">int</span> t;
+int main(){
+    int t;
     cin&gt;&gt;t;
-    <span class="pl-k">while</span> (t--) <span class="pl-c1">solve</span>();
-    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
+    while (t--) solve();
+    return 0;
 }</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 

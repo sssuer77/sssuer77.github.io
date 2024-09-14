@@ -106,42 +106,42 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </ul>
 <h2>代码实现</h2>
 <p>直接贴上模板，很好理解。</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span>对于字符串比较多的要统计个数的，map被卡的情况下，直接用字典树</span>
-<span class="pl-c"><span class="pl-c">//</span>很多题都是要用到节点序号来表示某个字符串</span>
-<span class="pl-k">const</span> <span class="pl-k">int</span> maxn = <span class="pl-c1">2e6</span> + <span class="pl-c1">5</span>;<span class="pl-c"><span class="pl-c">//</span>如果是64MB可以开到2e6+5，尽量开大</span>
-<span class="pl-k">int</span> tree[maxn][<span class="pl-c1">30</span>];<span class="pl-c"><span class="pl-c">//</span>tree[i][j]表示节点i的第j个儿子的节点编号</span>
-<span class="pl-k">bool</span> flagg[maxn];<span class="pl-c"><span class="pl-c">//</span>表示以该节点结尾是一个单词</span>
-<span class="pl-k">int</span> tot=<span class="pl-c1">0</span>;<span class="pl-c"><span class="pl-c">//</span>总节点数</span>
-<span class="pl-k">void</span> <span class="pl-en">insert</span>(string s){
-    <span class="pl-k">int</span>  len = s.<span class="pl-c1">size</span>();
-    <span class="pl-k">int</span> root = <span class="pl-c1">0</span>;
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; len; i++){
-        <span class="pl-k">int</span> id = s[i] - <span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>;
-        <span class="pl-k">if</span> (!tree[root][id]) tree[root][id] = ++tot;
+<div class="highlight highlight-source-c++"><pre class="notranslate">//对于字符串比较多的要统计个数的，map被卡的情况下，直接用字典树
+//很多题都是要用到节点序号来表示某个字符串
+const int maxn = 2e6 + 5;//如果是64MB可以开到2e6+5，尽量开大
+int tree[maxn][30];//tree[i][j]表示节点i的第j个儿子的节点编号
+bool flagg[maxn];//表示以该节点结尾是一个单词
+int tot=0;//总节点数
+void insert(string s){
+    int  len = s.size();
+    int root = 0;
+    for (int i = 0; i &lt; len; i++){
+        int id = s[i] - '0';
+        if (!tree[root][id]) tree[root][id] = ++tot;
         root = tree[root][id];
     }
-    flagg[root] = <span class="pl-c1">true</span>;
+    flagg[root] = true;
 }
-<span class="pl-c"><span class="pl-c">//</span>查询操作，按具体要求改动,没有flagg判定</span>
-<span class="pl-k">bool</span> <span class="pl-en">_find</span>(string s){
-    <span class="pl-k">int</span> len = s.<span class="pl-c1">size</span>();
-    <span class="pl-k">int</span> root = <span class="pl-c1">0</span>;
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; len; i++){
-        <span class="pl-k">int</span> id = s[i] - <span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>;
-        <span class="pl-k">if</span> (!tree[root][id]) <span class="pl-k">return</span> <span class="pl-c1">false</span>;
+//查询操作，按具体要求改动,没有flagg判定
+bool _find(string s){
+    int len = s.size();
+    int root = 0;
+    for (int i = 0; i &lt; len; i++){
+        int id = s[i] - '0';
+        if (!tree[root][id]) return false;
         root = tree[root][id];
     }
-    <span class="pl-k">return</span> <span class="pl-c1">true</span>;
+    return true;
 }
-<span class="pl-k">void</span> <span class="pl-en">init</span>()<span class="pl-c"><span class="pl-c">//</span>最后清空，节省时间</span>
+void init()//最后清空，节省时间
 {
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt;= tot; i++)
+    for (int i = 0; i &lt;= tot; i++)
     {
-        flagg[i] = <span class="pl-c1">false</span>;
-        <span class="pl-k">for</span> (<span class="pl-k">int</span> j = <span class="pl-c1">0</span>; j &lt; <span class="pl-c1">10</span>; j++)
-            tree[i][j] = <span class="pl-c1">0</span>;
+        flagg[i] = false;
+        for (int j = 0; j &lt; 10; j++)
+            tree[i][j] = 0;
     }
-    tot = <span class="pl-c1">0</span>;<span class="pl-c"><span class="pl-c">//</span>RE有可能是这里的问题</span>
+    tot = 0;//RE有可能是这里的问题
 }</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
