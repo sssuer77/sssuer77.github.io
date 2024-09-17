@@ -89,87 +89,87 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 这道题刚开始想从叶子节点开始向根方向搜索，很难写，状态不好存，遂看了几篇题解，选择了树形dp的做法。<br>
 参考：<a href="https://www.cnblogs.com/zsc985246/p/18333684" rel="nofollow">https://www.cnblogs.com/zsc985246/p/18333684</a><br>
 用链式前向星存下这棵树，从根节点开始深搜，这样保证在访问父节点时他的子节点全部访问过了。用一个数组u存下访问每个节点时他的所有子节点中的最小值mn是多少，在搜到叶子节点时将u赋值为它自己的值；中间节点时若v&gt;mn,将u赋值为mn，若v&lt;mn,将u赋值为(v+mn)/2；到根节点可以简单粗暴直接加上mn作为答案。</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">#include &lt;bits/stdc++.h&gt;
-<span class="pl-k">using</span> <span class="pl-k">namespace</span> std;
-int v[200005];
-int u[200005];
-int n;
-//链式前向星
-const int MAXN = 2e5 + 7;
-int head[MAXN];
-int cnt = 1;
-struct edge {
-    int to, nxt;
+<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span> <span class="pl-s"><span class="pl-pds">&lt;</span>bits/stdc++.h<span class="pl-pds">&gt;</span></span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
+<span class="pl-k">int</span> v[<span class="pl-c1">200005</span>];
+<span class="pl-k">int</span> u[<span class="pl-c1">200005</span>];
+<span class="pl-k">int</span> n;
+<span class="pl-c"><span class="pl-c">//</span>链式前向星</span>
+<span class="pl-k">const</span> <span class="pl-k">int</span> MAXN = <span class="pl-c1">2e5</span> + <span class="pl-c1">7</span>;
+<span class="pl-k">int</span> head[MAXN];
+<span class="pl-k">int</span> cnt = <span class="pl-c1">1</span>;
+<span class="pl-k">struct</span> <span class="pl-en">edge</span> {
+    <span class="pl-k">int</span> to, nxt;
 };
 edge a[MAXN];
-void add_edge(int u, int v) {
-    //a[cnt].w = w;
-    a[cnt].to = v;
-    a[cnt].nxt = head[u];
+<span class="pl-k">void</span> <span class="pl-en">add_edge</span>(<span class="pl-k">int</span> u, <span class="pl-k">int</span> v) {
+    <span class="pl-c"><span class="pl-c">//</span>a[cnt].w = w;</span>
+    a[cnt].<span class="pl-smi">to</span> = v;
+    a[cnt].<span class="pl-smi">nxt</span> = head[u];
     head[u] = cnt++;
 }
 
-void dfs(int x){
-    ll mn = 1e9+7;
-    for (int j = head[x]; j; j = a[j].nxt) {
-        dfs(a[j].to);
-        mn = min(mn, (ll)u[a[j].to]);
+<span class="pl-k">void</span> <span class="pl-en">dfs</span>(<span class="pl-k">int</span> x){
+    ll mn = <span class="pl-c1">1e9</span>+<span class="pl-c1">7</span>;
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> j = head[x]; j; j = a[j].<span class="pl-smi">nxt</span>) {
+        <span class="pl-c1">dfs</span>(a[j].<span class="pl-smi">to</span>);
+        mn = <span class="pl-c1">min</span>(mn, (ll)u[a[j].<span class="pl-smi">to</span>]);
     }
-    if (mn == 1e9+7) {
+    <span class="pl-k">if</span> (mn == <span class="pl-c1">1e9</span>+<span class="pl-c1">7</span>) {
         u[x] = v[x];
-        return;
+        <span class="pl-k">return</span>;
     }
-    if (x == 1) {
+    <span class="pl-k">if</span> (x == <span class="pl-c1">1</span>) {
         v[x] += mn;
-        return;
+        <span class="pl-k">return</span>;
     }
-    if (v[x] &lt; mn) {
-        u[x] = (v[x] + mn) / 2;
+    <span class="pl-k">if</span> (v[x] &lt; mn) {
+        u[x] = (v[x] + mn) / <span class="pl-c1">2</span>;
     }
-    else {
+    <span class="pl-k">else</span> {
         u[x] = mn;
     }
 }
 
-void init() {
-    for (int i = 0; i &lt;= n; i++) {
-        head[i] = 0;
-        v[i] = 0;
-        u[i] = 0;
-        cnt = 1;
-        a[i].nxt = 0;
-        a[i].to = 0;
+<span class="pl-k">void</span> <span class="pl-en">init</span>() {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt;= n; i++) {
+        head[i] = <span class="pl-c1">0</span>;
+        v[i] = <span class="pl-c1">0</span>;
+        u[i] = <span class="pl-c1">0</span>;
+        cnt = <span class="pl-c1">1</span>;
+        a[i].<span class="pl-smi">nxt</span> = <span class="pl-c1">0</span>;
+        a[i].<span class="pl-smi">to</span> = <span class="pl-c1">0</span>;
     }
 }
 
-void solve() {  
+<span class="pl-k">void</span> <span class="pl-en">solve</span>() {  
     cin &gt;&gt; n;
-    for (int i = 1; i &lt;= n; i++) {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">1</span>; i &lt;= n; i++) {
         cin &gt;&gt; v[i];
     }
-    int x;
-    for (int i = 2; i &lt;= n; i++) {
+    <span class="pl-k">int</span> x;
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">2</span>; i &lt;= n; i++) {
         cin &gt;&gt; x;
-        add_edge(x, i);
+        <span class="pl-c1">add_edge</span>(x, i);
     }
 
-    dfs(1);
-    cout &lt;&lt; v[1] &lt;&lt; '\n';
+    <span class="pl-c1">dfs</span>(<span class="pl-c1">1</span>);
+    cout &lt;&lt; v[<span class="pl-c1">1</span>] &lt;&lt; <span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\n</span><span class="pl-pds">'</span></span>;
 
-    //cnt = 1;
-    init();
+    <span class="pl-c"><span class="pl-c">//</span>cnt = 1;</span>
+    <span class="pl-c1">init</span>();
 
 }
 
-signed main() {
-    ios::<span class="pl-en">sync_with_stdio</span>(false);
-    cin.tie(0);
-    cout.tie(0);
-    int t = 1;
+<span class="pl-k">signed</span> <span class="pl-en">main</span>() {
+    <span class="pl-c1">ios::sync_with_stdio</span>(<span class="pl-c1">false</span>);
+    cin.<span class="pl-c1">tie</span>(<span class="pl-c1">0</span>);
+    cout.<span class="pl-c1">tie</span>(<span class="pl-c1">0</span>);
+    <span class="pl-k">int</span> t = <span class="pl-c1">1</span>;
     cin &gt;&gt; t;
-    while (t--) solve();
+    <span class="pl-k">while</span> (t--) <span class="pl-c1">solve</span>();
 
-    return 0;
+    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
 }</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 

@@ -101,24 +101,24 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>我们在查询时，一层一层向根查询，如果能够将每个节点的父节点都变成根节点多好啊。<br>
 我们可以在查询时，将查询路径上的每个节点的父节点都赋值成根节点。</p>
 <h2>模板代码</h2>
-<div class="highlight highlight-source-c++"><pre class="notranslate">void Init() {
-    for(int i=0; i&lt;=n; i++) {
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">void</span> <span class="pl-en">Init</span>() {
+    <span class="pl-k">for</span>(<span class="pl-k">int</span> i=<span class="pl-c1">0</span>; i&lt;=n; i++) {
         f[i] = i;
-        h[i] = 0;
+        h[i] = <span class="pl-c1">0</span>;
     }
 }
-int Find(int i) {
-    return f[i]==i ? f[i] : f[i]=Find(f[i]);
+<span class="pl-k">int</span> <span class="pl-en">Find</span>(<span class="pl-k">int</span> i) {
+    <span class="pl-k">return</span> f[i]==i ? f[i] : f[i]=<span class="pl-c1">Find</span>(f[i]);
 }
-void merge(int a, int b) {
-    int fa = Find(a);
-    int fb = Find(b);
-    if(fa != fb) {
-        if(h[fa] &lt; h[fb]) {
+<span class="pl-k">void</span> <span class="pl-en">merge</span>(<span class="pl-k">int</span> a, <span class="pl-k">int</span> b) {
+    <span class="pl-k">int</span> fa = <span class="pl-c1">Find</span>(a);
+    <span class="pl-k">int</span> fb = <span class="pl-c1">Find</span>(b);
+    <span class="pl-k">if</span>(fa != fb) {
+        <span class="pl-k">if</span>(h[fa] &lt; h[fb]) {
             f[fa] = fb;
-        } else {
+        } <span class="pl-k">else</span> {
             f[fb] = fa;
-            if(h[fa] == h[fb]) h[fa]++;
+            <span class="pl-k">if</span>(h[fa] == h[fb]) h[fa]++;
         }
     }
 }</pre></div></div>

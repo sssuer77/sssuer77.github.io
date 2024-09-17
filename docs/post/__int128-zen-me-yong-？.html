@@ -84,29 +84,29 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </div>
     <div id="content">
 <div class="markdown-body" id="postBody"><p>由于__int128不在C++标准里，因此没有配套的cin,cout,scanf,printf能使用，必须要手写，个人倾向于改动快读快写的板子来使用，其实就是把数据类型改一下（偷懒）。</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">#define int __int128
-inline void read(int &amp;n){
-    int x=0,f=1;
-    char ch=getchar();
-    while(ch&lt;'0'||ch&gt;'9'){
-        if(ch=='-') f=-1;
-        ch=getchar();
+<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">define</span> <span class="pl-en">int</span> __int128
+<span class="pl-k">inline</span> <span class="pl-k">void</span> <span class="pl-en">read</span>(<span class="pl-k">int</span> &amp;n){
+    <span class="pl-k">int</span> x=<span class="pl-c1">0</span>,f=<span class="pl-c1">1</span>;
+    <span class="pl-k">char</span> ch=<span class="pl-c1">getchar</span>();
+    <span class="pl-k">while</span>(ch&lt;<span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>||ch&gt;<span class="pl-s"><span class="pl-pds">'</span>9<span class="pl-pds">'</span></span>){
+        <span class="pl-k">if</span>(ch==<span class="pl-s"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>) f=-<span class="pl-c1">1</span>;
+        ch=<span class="pl-c1">getchar</span>();
     }
-    while(ch&gt;='0'&amp;&amp;ch&lt;='9'){
-        x=(x&lt;&lt;1)+(x&lt;&lt;3)+(ch^48);
-        ch=getchar();
+    <span class="pl-k">while</span>(ch&gt;=<span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>&amp;&amp;ch&lt;=<span class="pl-s"><span class="pl-pds">'</span>9<span class="pl-pds">'</span></span>){
+        x=(x&lt;&lt;<span class="pl-c1">1</span>)+(x&lt;&lt;<span class="pl-c1">3</span>)+(ch^<span class="pl-c1">48</span>);
+        ch=<span class="pl-c1">getchar</span>();
     }
     n=x*f;
 }
-inline void print(int n){
-    if(n&lt;0){
-        putchar('-');
-        n*=-1;
+<span class="pl-k">inline</span> <span class="pl-k">void</span> <span class="pl-en">print</span>(<span class="pl-k">int</span> n){
+    <span class="pl-k">if</span>(n&lt;<span class="pl-c1">0</span>){
+        <span class="pl-c1">putchar</span>(<span class="pl-s"><span class="pl-pds">'</span>-<span class="pl-pds">'</span></span>);
+        n*=-<span class="pl-c1">1</span>;
     }
-    if(n&gt;9) print(n/10);
-    putchar(n % 10 + '0');
+    <span class="pl-k">if</span>(n&gt;<span class="pl-c1">9</span>) <span class="pl-c1">print</span>(n/<span class="pl-c1">10</span>);
+    <span class="pl-c1">putchar</span>(n % <span class="pl-c1">10</span> + <span class="pl-s"><span class="pl-pds">'</span>0<span class="pl-pds">'</span></span>);
 }
-#undef int</pre></div></div>
+#<span class="pl-k">undef</span> int</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>

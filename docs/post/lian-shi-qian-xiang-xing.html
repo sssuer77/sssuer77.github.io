@@ -92,27 +92,27 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 </blockquote>
 <p>由于本人 <del>不会写</del> 懒得写邻接表，因此在做题时大量使用链式前向星，在这里放一个自己的模板。<br>
 注释：head数组存放的是与每个节点相连的第一条边的编号；cnt是边的编号，初始值自定；a是存放边的数组；结构体edge中to是边连接的下一个节点，nxt是与这条边同一个起始节点的下一条边的编号，w是权值；add_edge函数是头插法。</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">//链式前向星
-const int MAXN=1e6+7;
-int head[MAXN];
-int cnt=0;
-struct edge{
-	int to , nxt , w;
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span>链式前向星</span>
+<span class="pl-k">const</span> <span class="pl-k">int</span> MAXN=<span class="pl-c1">1e6</span>+<span class="pl-c1">7</span>;
+<span class="pl-k">int</span> head[MAXN];
+<span class="pl-k">int</span> cnt=<span class="pl-c1">0</span>;
+<span class="pl-k">struct</span> <span class="pl-en">edge</span>{
+	<span class="pl-k">int</span> to , nxt , w;
 };
 edge a[MAXN];
-void add_edge(int u , int v , int w) {
-	a[cnt].w = w;
-	a[cnt].to = v;
-	a[cnt].nxt = head[u];
+<span class="pl-k">void</span> <span class="pl-en">add_edge</span>(<span class="pl-k">int</span> u , <span class="pl-k">int</span> v , <span class="pl-k">int</span> w) {
+	a[cnt].<span class="pl-smi">w</span> = w;
+	a[cnt].<span class="pl-smi">to</span> = v;
+	a[cnt].<span class="pl-smi">nxt</span> = head[u];
 	head[u] = cnt ++;
 }</pre></div>
 <p>遍历函数是这样的：</p>
-<div class="highlight highlight-source-c++"><pre class="notranslate">for(int i = 1; i &lt;= n; i++)//n个起点
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">for</span>(<span class="pl-k">int</span> i = <span class="pl-c1">1</span>; i &lt;= n; i++)<span class="pl-c"><span class="pl-c">//</span>n个起点</span>
     {
         cout &lt;&lt; i &lt;&lt; endl;
-        for(int j = head[i]; j != -1; j = edge[j].nxt)//遍历以i为起点的边
+        <span class="pl-k">for</span>(<span class="pl-k">int</span> j = head[i]; j != -<span class="pl-c1">1</span>; j = edge[j].<span class="pl-smi">nxt</span>)<span class="pl-c"><span class="pl-c">//</span>遍历以i为起点的边</span>
         {
-            cout &lt;&lt; i &lt;&lt; " " &lt;&lt; edge[j].to &lt;&lt; " " &lt;&lt; edge[j].w &lt;&lt; endl;
+            cout &lt;&lt; i &lt;&lt; <span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span> &lt;&lt; edge[j].<span class="pl-smi">to</span> &lt;&lt; <span class="pl-s"><span class="pl-pds">"</span> <span class="pl-pds">"</span></span> &lt;&lt; edge[j].<span class="pl-smi">w</span> &lt;&lt; endl;
         }
         cout &lt;&lt; endl;
     }</pre></div></div>
