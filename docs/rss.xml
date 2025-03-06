@@ -1,5 +1,55 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Fri, 20 Dec 2024 10:44:18 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>mp4转gif</title><link>https://sssuer77.github.io/post/mp4-zhuan-gif.html</link><description>tutieshi.com/video/。</description><guid isPermaLink="true">https://sssuer77.github.io/post/mp4-zhuan-gif.html</guid><pubDate>Fri, 20 Dec 2024 10:43:07 +0000</pubDate></item><item><title>原因</title><link>https://sssuer77.github.io/post/yuan-yin.html</link><description>经济转型与不平等：随着经济从高速增长转向高质量发展，传统产业面临转型压力。</description><guid isPermaLink="true">https://sssuer77.github.io/post/yuan-yin.html</guid><pubDate>Wed, 11 Dec 2024 12:54:51 +0000</pubDate></item><item><title>前端自学</title><link>https://sssuer77.github.io/post/qian-duan-zi-xue.html</link><description>HTML5,CSS3,移动端布局&#13;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Thu, 06 Mar 2025 07:20:33 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>离散化</title><link>https://sssuer77.github.io/post/li-san-hua.html</link><description># 离散化
+今日做题时，偶遇巨大数据，拼尽全力无法ac，才明白用map离散化被卡了，看来是不得不学一下了。</description><guid isPermaLink="true">https://sssuer77.github.io/post/li-san-hua.html</guid><pubDate>Thu, 06 Mar 2025 07:17:37 +0000</pubDate></item><item><title>ST表</title><link>https://sssuer77.github.io/post/ST-biao.html</link><description>动态规划思想，倍增，nlogn复杂度
+```cpp
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+#define MaxN 100002
+int f[MaxN][22];
+int N, M;
+inline int read() {
+    int x = 0, f = 1;
+    char ch = getchar();
+
+    while (ch &lt; '0' || ch &gt; '9') {
+        if (ch == '-')
+            f = -1;
+
+        ch = getchar();
+    }
+
+    while (ch &gt;= '0' &amp;&amp; ch &lt;= '9') {
+        x = x * 10 + ch - 48;
+        ch = getchar();
+    }
+
+    return x * f;
+}
+int main() {
+    scanf('%d%d', &amp;N, &amp;M);
+
+    for (int i = 1; i &lt;= N; i++) {
+        f[i][0] = read();
+    }
+
+    //更新f数组
+    for (int i = 1; i &lt; 22; i++) {
+        for (int j = 1; j + (1 &lt;&lt; i) - 1 &lt;= N; j++) {
+            f[j][i] = max(f[j][i - 1], f[j + (1 &lt;&lt; (i - 1))][i - 1]);
+        }
+    }
+
+    //打印答案
+    for (int i = 0; i &lt; M; i++) {
+        int l = read();
+        int r = read();
+        int s = __lg(r - l + 1);
+        printf('%d\n', max(f[l][s], f[r - (1 &lt;&lt; s) + 1][s]));
+    }
+
+    return 0;
+}
+```。</description><guid isPermaLink="true">https://sssuer77.github.io/post/ST-biao.html</guid><pubDate>Fri, 21 Feb 2025 05:46:04 +0000</pubDate></item><item><title>mp4转gif</title><link>https://sssuer77.github.io/post/mp4-zhuan-gif.html</link><description>tutieshi.com/video/。</description><guid isPermaLink="true">https://sssuer77.github.io/post/mp4-zhuan-gif.html</guid><pubDate>Fri, 20 Dec 2024 10:43:07 +0000</pubDate></item><item><title>前端自学</title><link>https://sssuer77.github.io/post/qian-duan-zi-xue.html</link><description>HTML5,CSS3,移动端布局&#13;
 JavaScript&#13;
 Ajax-node&#13;
 Vue&#13;
