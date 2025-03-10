@@ -1,5 +1,149 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Thu, 06 Mar 2025 07:35:17 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>种类并查集/拓展域并查集</title><link>https://sssuer77.github.io/post/zhong-lei-bing-cha-ji---tuo-zhan-yu-bing-cha-ji.html</link><description>&lt;a href='https://www.cnblogs.com/Eleven-Qian-Shan/p/13154721.html' target='_blank'&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Mon, 10 Mar 2025 09:32:07 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>最小生成树</title><link>https://sssuer77.github.io/post/zui-xiao-sheng-cheng-shu.html</link><description># Kruskal （克鲁斯卡尔）算法（加边法）
+时间复杂度O(mlog(m)),用并查集维护
+模板代码
+```cpp
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int inf=0x3f3f3f3f;
+const int maxn=2e5+10;;
+struct node {
+    int x,y,z;
+}edge[maxn];
+
+
+bool cmp(node a,node b) {
+    return a.z &lt; b.z;
+}
+
+	
+int fa[maxn];
+int n,m;
+int u,v,w; 
+long long sum;
+
+int Find(int x) {
+    return x == fa[x] ? x : fa[x] = Find(fa[x]);
+}
+
+void solve() {
+	// Kruskal 算法求最小生成树 
+    cin&gt;&gt;n&gt;&gt;m;
+	
+    for(int i = 1; i &lt;= m; i ++) {
+        cin&gt;&gt;edge[i].x&gt;&gt;edge[i].y&gt;&gt;edge[i].z;
+    }
+    for(int i = 0; i &lt;= n; i ++) {
+        fa[i] = i;
+    }
+    sort(edge + 1,edge + 1 + m,cmp);
+    // 每次加入一条最短的边
+    for(int i = 1; i &lt;= m; i ++) {
+        int x = Find(edge[i].x);
+        int y = Find(edge[i].y);
+        if(x == y) continue;
+        fa[y] = x;
+        sum += edge[i].z;
+    }
+    int ans = 0;
+    for(int i = 1; i &lt;= n; i ++) {
+        if(i == fa[i]) ans ++;
+    }
+    if(ans &gt; 1) puts('impossible');
+    else printf('%lld\n',sum);
+
+
+}
+
+signed main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+	int t = 1;
+	cin &gt;&gt; t;
+    // cout&lt;&lt;'YES';
+	while (t--) {
+        // init();
+		solve();
+	}
+	return 0;
+}
+```
+
+# prim（普里姆）算法（加点法）
+此处是暴力prim，复杂度达到O(n^2+m)
+```cpp
+#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int inf=0x3f3f3f3f;
+const int maxn=505;;
+int a[maxn][maxn];
+	
+int vis[maxn],dist[maxn];
+
+int n,m;
+
+int u,v,w;
+
+long long sum = 0;
+
+int prim(int pos) {
+    dist[pos] = 0;
+    // 一共有 n 个点,就需要 遍历 n 次,每次寻找一个权值最小的点,记录其下标
+    for(int i = 1; i &lt;= n; i ++) {
+        int cur = -1;
+        for(int j = 1; j &lt;= n; j ++) {
+            if(!vis[j] &amp;&amp; (cur == -1 || dist[j] &lt; dist[cur])) {
+                cur = j;
+            }
+        }
+        // 这里需要提前终止
+        if(dist[cur] &gt;= inf) return inf;
+        sum += dist[cur];
+        vis[cur] = 1;
+        for(int k = 1; k &lt;= n; k ++) {
+            // 只更新还没有找到的最小权值
+            if(!vis[k]) dist[k] = min(dist[k],a[cur][k]);
+        }
+    }
+    return sum;
+}
+
+void solve() {
+	// prim 算法求最小生成树 
+	
+    cin&gt;&gt;n&gt;&gt;m;
+    memset(a,0x3f,sizeof(a));
+    memset(dist,0x3f,sizeof(dist));
+    for(int i = 1; i &lt;= m; i ++) {
+        cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;
+        a[u][v] = min(a[u][v],w);
+        a[v][u] = min(a[v][u],w);
+    }
+    int value = prim(1);
+    if(value &gt;= inf) puts('impossible');
+    else printf('%lld\n',sum);
+
+}
+
+signed main() {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+	cout.tie(0);
+	int t = 1;
+	cin &gt;&gt; t;
+    // cout&lt;&lt;'YES';
+	while (t--) {
+        // init();
+		solve();
+	}
+	return 0;
+}
+```
+
+。</description><guid isPermaLink="true">https://sssuer77.github.io/post/zui-xiao-sheng-cheng-shu.html</guid><pubDate>Mon, 10 Mar 2025 09:31:38 +0000</pubDate></item><item><title>种类并查集/拓展域并查集</title><link>https://sssuer77.github.io/post/zhong-lei-bing-cha-ji---tuo-zhan-yu-bing-cha-ji.html</link><description>&lt;a href='https://www.cnblogs.com/Eleven-Qian-Shan/p/13154721.html' target='_blank'&gt;
 参考博客
 &lt;/a&gt;
 。</description><guid isPermaLink="true">https://sssuer77.github.io/post/zhong-lei-bing-cha-ji---tuo-zhan-yu-bing-cha-ji.html</guid><pubDate>Thu, 06 Mar 2025 07:34:43 +0000</pubDate></item><item><title>离散化</title><link>https://sssuer77.github.io/post/li-san-hua.html</link><description># 离散化
