@@ -1,5 +1,145 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Tue, 11 Mar 2025 02:19:43 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>bits/stdc++.h</title><link>https://sssuer77.github.io/post/bits-stdc%2B%2B.h.html</link><description>```cpp
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Tue, 11 Mar 2025 10:22:24 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>最短路</title><link>https://sssuer77.github.io/post/zui-duan-lu.html</link><description>&lt;a href='https://blog.csdn.net/wmy0217_/article/details/105438163' target='_blank'&gt;
+推荐博客
+&lt;/a&gt;
+
+![Image](https://github.com/user-attachments/assets/826a944c-e693-4041-9195-7f99c3cd07c8)
+
+# 朴素Dijkstra
+时间复杂度为O(n^2)
+核心代码：
+```cpp
+for(int i=0; i&lt;n; i++)
+	{
+		int t = -1;
+		for(int j=1; j&lt;=n; j++)   // 在没有确定最短路中的所有点找出距离最短的那个点 t 
+		   if(!st[j] &amp;&amp; (t == -1 || dist[t] &gt; dist[j]))
+		    t=j;                  
+		    
+		st[t]=true; // 代表 t 这个点已经确定最短路了
+		
+		for(int j=1; j&lt;=n; j++) // 用 t 更新其他点的最短距离 
+		 dist[j] = min(dist[j],dist[t]+g[t][j]);
+	 } 
+```
+# 堆优化Dijkstra
+时间复杂度O(nlogn+m)
+模板：
+```cpp
+#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;algorithm&gt;
+#include&lt;queue&gt;
+using namespace std;
+typedef pair&lt;int,int&gt; PII; //first存距离，second存结点编号 
+const int N = 2e5+10;
+int n,m;
+int h[N],w[N],e[N],ne[N],idx; // 邻接表的存储 
+int dist[N]; // 第 i 个点到起点的最短距离
+bool st[N]; // 代表第 i 个点的最短路是否确定、是否需要更新 
+
+void add(int a,int b,int c)
+{
+	e[idx] = b,w[idx] = c,ne[idx] = h[a],h[a] = idx++;
+}
+
+int dijkstra()
+{
+	memset(dist,0x3f,sizeof(dist)); // 将所有距离初始化正无穷
+	dist[1] = 0;  // 第一个点到起点的距离为 0  
+	
+	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt;&gt; heap; // 小根堆
+	heap.push({0,1}); //把 1 号点放入堆中 
+	
+	while(heap.size()) // 堆不空
+	{
+	   	PII t = heap.top(); //找到当前距离最小的点
+		heap.pop();
+		
+		int ver = t.second,distance = t.first; // ver为编号，distance为距离
+		if(st[ver]) continue;   // 重边的话不用更新其他点了
+		st[ver] = true;   //标记 t 已经确定最短路
+		
+		for(int i = h[ver]; i!=-1; i=ne[i])  // 用 t 更新其他点的最短距离
+		{
+			int j = e[i];
+			if(dist[j] &gt; distance + w[i])
+			{
+				dist[j] = distance + w[i];
+				heap.push({dist[j],j}); //入堆
+			}
+		}
+	}  
+	 
+	if(dist[n] == 0x3f3f3f3f) return -1;  // 说明 1 和 n 是不连通的，不存在最短路 
+	return dist[n];
+}
+int main()
+{
+	memset(h,-1,sizeof(h));
+	cin &gt;&gt; n &gt;&gt; m;
+	while(m--)
+	{
+		int a,b,c;
+		scanf('%d%d%d',&amp;a,&amp;b,&amp;c);
+		add(a,b,c);
+	}
+	cout &lt;&lt; dijkstra(); 
+	return 0;
+}
+```
+# Bellman-Ford
+时间复杂度O(nm)
+模板：
+```cpp
+#include&lt;cstring&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+const int N = 510,M = 10010;
+
+int n,m,k;
+int dist[N],backup[N]; //backup数组为上次
+struct edges
+{
+   	int a,b,w; // a-&gt;b权值为w的边 
+}edge[M];
+
+int bellman_ford()
+{
+	memset(dist,0x3f,sizeof(dist));
+	dist[1] = 0;
+	
+	for(int i=0; i&lt;k; i++) 
+	{
+		memcpy(backup,dist,sizeof(dist)); //备份
+		for(int j=0; j&lt;m; j++)   // 枚举所有边 
+		{
+		   int a = edge[j].a, b = edge[j].b, w=edge[j].w;	
+		   dist[b] = min(dist[b],backup[a]+w); // 用备份更新 
+		}
+	}
+	if(dist[n] &gt; 0x3f3f3f3f/2) return -1;
+	return dist[n];
+}
+int main()
+{
+    cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;
+	for(int i=0; i&lt;m; i++)
+	{
+	   int a,b,w;
+	   cin &gt;&gt; a &gt;&gt; b &gt;&gt; w;
+	   edge[i] = {a,b,w}; 	
+	}	
+	int t = bellman_ford();
+	
+	if(t == -1) cout &lt;&lt; 'impossible';
+	else cout &lt;&lt; t;
+	return 0;
+} 
+```
+# SPFA
+是对Bellman-Ford的优化，但是最坏情况下依然是O(nm)的时间复杂度。</description><guid isPermaLink="true">https://sssuer77.github.io/post/zui-duan-lu.html</guid><pubDate>Tue, 11 Mar 2025 10:22:02 +0000</pubDate></item><item><title>bits/stdc++.h</title><link>https://sssuer77.github.io/post/bits-stdc%2B%2B.h.html</link><description>```cpp
 // C++ includes used for precompiling -*- C++ -*-
 // Copyright (C) 2003-2014 Free Software Foundation, Inc. This file is part of the GNU ISO C++ Library.  This library is free// software; you can redistribute it and/or modify it under the// terms of the GNU General Public License as published by the// Free Software Foundation; either version 3, or (at your option)// any later version.
 // This library is distributed in the hope that it will be useful,// but WITHOUT ANY WARRANTY; without even the implied warranty of// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the// GNU General Public License for more details.
