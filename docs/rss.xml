@@ -1,5 +1,101 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Mon, 10 Mar 2025 09:50:57 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>拓扑排序</title><link>https://sssuer77.github.io/post/tuo-pu-pai-xu.html</link><description># 拓扑排序（Topo sort）
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Tue, 11 Mar 2025 02:19:43 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>bits/stdc++.h</title><link>https://sssuer77.github.io/post/bits-stdc%2B%2B.h.html</link><description>```cpp
+// C++ includes used for precompiling -*- C++ -*-
+// Copyright (C) 2003-2014 Free Software Foundation, Inc. This file is part of the GNU ISO C++ Library.  This library is free// software; you can redistribute it and/or modify it under the// terms of the GNU General Public License as published by the// Free Software Foundation; either version 3, or (at your option)// any later version.
+// This library is distributed in the hope that it will be useful,// but WITHOUT ANY WARRANTY; without even the implied warranty of// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the// GNU General Public License for more details.
+// Under Section 7 of GPL version 3, you are granted additional// permissions described in the GCC Runtime Library Exception, version// 3.1, as published by the Free Software Foundation.
+// You should have received a copy of the GNU General Public License and// a copy of the GCC Runtime Library Exception along with this program;// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see// &lt;http://www.gnu.org/licenses/&gt;.
+/** @file stdc++.h *  This is an implementation file for a precompiled header. */
+// 17.4.1.2 Headers
+// C
+#ifndef _GLIBCXX_NO_ASSERT
+#include &lt;cassert&gt;
+#endif
+#include &lt;cctype&gt;
+#include &lt;cerrno&gt;
+#include &lt;cfloat&gt;
+#include &lt;ciso646&gt;
+#include &lt;climits&gt;
+#include &lt;clocale&gt;
+#include &lt;cmath&gt;
+#include &lt;csetjmp&gt;
+#include &lt;csignal&gt;
+#include &lt;cstdarg&gt;
+#include &lt;cstddef&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cstring&gt;
+#include &lt;ctime&gt;
+
+#if __cplusplus &gt;= 201103L
+#include &lt;ccomplex&gt;
+#include &lt;cfenv&gt;
+#include &lt;cinttypes&gt;
+#include &lt;cstdalign&gt;
+#include &lt;cstdbool&gt;
+#include &lt;cstdint&gt;
+#include &lt;ctgmath&gt;
+#include &lt;cwchar&gt;
+#include &lt;cwctype&gt;
+#endif
+
+// C++
+#include &lt;algorithm&gt;
+#include &lt;bitset&gt;
+#include &lt;complex&gt;
+#include &lt;deque&gt;
+#include &lt;exception&gt;
+#include &lt;fstream&gt;
+#include &lt;functional&gt;
+#include &lt;iomanip&gt;
+#include &lt;ios&gt;
+#include &lt;iosfwd&gt;
+#include &lt;iostream&gt;
+#include &lt;istream&gt;
+#include &lt;iterator&gt;
+#include &lt;limits&gt;
+#include &lt;list&gt;
+#include &lt;locale&gt;
+#include &lt;map&gt;
+#include &lt;memory&gt;
+#include &lt;new&gt;
+#include &lt;numeric&gt;
+#include &lt;ostream&gt;
+#include &lt;queue&gt;
+#include &lt;set&gt;
+#include &lt;sstream&gt;
+#include &lt;stack&gt;
+#include &lt;stdexcept&gt;
+#include &lt;streambuf&gt;
+#include &lt;string&gt;
+#include &lt;typeinfo&gt;
+#include &lt;utility&gt;
+#include &lt;valarray&gt;
+#include &lt;vector&gt;
+
+#if __cplusplus &gt;= 201103L
+#include &lt;array&gt;
+#include &lt;atomic&gt;
+#include &lt;chrono&gt;
+#include &lt;condition_variable&gt;
+#include &lt;forward_list&gt;
+#include &lt;future&gt;
+#include &lt;initializer_list&gt;
+#include &lt;mutex&gt;
+#include &lt;random&gt;
+#include &lt;ratio&gt;
+#include &lt;regex&gt;
+#include &lt;scoped_allocator&gt;
+#include &lt;system_error&gt;
+#include &lt;thread&gt;
+#include &lt;tuple&gt;
+#include &lt;typeindex&gt;
+#include &lt;type_traits&gt;
+#include &lt;unordered_map&gt;
+#include &lt;unordered_set&gt;
+#endif
+```
+。</description><guid isPermaLink="true">https://sssuer77.github.io/post/bits-stdc%2B%2B.h.html</guid><pubDate>Tue, 11 Mar 2025 02:19:18 +0000</pubDate></item><item><title>拓扑排序</title><link>https://sssuer77.github.io/post/tuo-pu-pai-xu.html</link><description># 拓扑排序（Topo sort）
 对DAG（有向无环图）拓扑排序，非DAG不存在拓扑排序的说法。</description><guid isPermaLink="true">https://sssuer77.github.io/post/tuo-pu-pai-xu.html</guid><pubDate>Mon, 10 Mar 2025 09:50:29 +0000</pubDate></item><item><title>最小生成树</title><link>https://sssuer77.github.io/post/zui-xiao-sheng-cheng-shu.html</link><description># Kruskal （克鲁斯卡尔）算法（加边法）
 时间复杂度O(mlog(m)),用并查集维护
 模板代码
