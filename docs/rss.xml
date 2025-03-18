@@ -1,5 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Tue, 11 Mar 2025 10:22:24 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>最短路</title><link>https://sssuer77.github.io/post/zui-duan-lu.html</link><description>&lt;a href='https://blog.csdn.net/wmy0217_/article/details/105438163' target='_blank'&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Tue, 18 Mar 2025 03:25:22 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>最长上升子序列</title><link>https://sssuer77.github.io/post/zui-chang-shang-sheng-zi-xu-lie.html</link><description>&lt;a href='https://blog.csdn.net/lxt_Lucia/article/details/81206439' target='_blank'&gt;
+参考博客
+&lt;/a&gt;
+
+# dp
+简单的dp，d[i]记录以i结尾的最长上升子序列的长度。</description><guid isPermaLink="true">https://sssuer77.github.io/post/zui-chang-shang-sheng-zi-xu-lie.html</guid><pubDate>Tue, 18 Mar 2025 03:24:57 +0000</pubDate></item><item><title>最短路</title><link>https://sssuer77.github.io/post/zui-duan-lu.html</link><description>&lt;a href='https://blog.csdn.net/wmy0217_/article/details/105438163' target='_blank'&gt;
 推荐博客
 &lt;/a&gt;
 
