@@ -1,5 +1,127 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Tue, 18 Mar 2025 03:25:22 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>最长上升子序列</title><link>https://sssuer77.github.io/post/zui-chang-shang-sheng-zi-xu-lie.html</link><description>&lt;a href='https://blog.csdn.net/lxt_Lucia/article/details/81206439' target='_blank'&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Mon, 19 May 2025 09:09:58 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>遇到问题：Build Gmeek呈灰色感叹号</title><link>https://sssuer77.github.io/post/yu-dao-wen-ti-%EF%BC%9ABuild%20Gmeek-cheng-hui-se-gan-tan-hao.html</link><description># 问题
+
+![Image](https://github.com/user-attachments/assets/47726771-369f-4716-9991-d065cd997ad4)
+点开详情可以看到，Ubuntu停止对应版本支持
+![Image](https://github.com/user-attachments/assets/33079bde-a7e3-41b0-80b3-2abec63be114)
+# 问题解决
+进入issues发现同样问题https://github.com/Meekdai/Gmeek/issues/240
+![Image](https://github.com/user-attachments/assets/89ec0fc5-ed2d-41d9-af59-60025026abd4)
+同样操作修改Gmeek.yml文件中的Ubuntu版本配置即可
+。</description><guid isPermaLink="true">https://sssuer77.github.io/post/yu-dao-wen-ti-%EF%BC%9ABuild%20Gmeek-cheng-hui-se-gan-tan-hao.html</guid><pubDate>Mon, 19 May 2025 09:07:56 +0000</pubDate></item><item><title>拉取微信聊天记录生成词云</title><link>https://sssuer77.github.io/post/la-qu-wei-xin-liao-tian-ji-lu-sheng-cheng-ci-yun.html</link><description># 拉取微信聊天记录 
+这里推荐这个项目：https://github.com/xaoyaoo/PyWxDump/tree/master 
+最新的release下载可运行文件即可
+解密完成后可以选择要导出的聊天记录，导出为.csv格式
+# 下载停用词stopwords
+推荐项目：https://github.com/goto456/stopwords
+下载cn_stopwords.txt文件，自行删改
+# 生成代码
+默认导出csv文件为utf-8编码
+```python
+import csv
+import jieba
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
+import os
+
+def read_csv_files(file_paths):
+    all_texts = []
+    for file_path in file_paths:
+        try:
+            with open(file_path, 'r', encoding='utf-8') as csvfile:
+                reader = csv.reader(csvfile)
+                for row in reader:
+                    try:
+                        text = row[6]
+                        all_texts.append(text)
+                    except IndexError:
+                        print(f'文件 {file_path} 中某行数据列数不足，已跳过')
+                        continue
+        except FileNotFoundError:
+            print(f'文件 {file_path} 未找到')
+        except Exception as e:
+            print(f'读取文件 {file_path} 失败: {e}')
+    return all_texts
+
+def segment_text(texts):
+    seg_list = []
+    for text in texts:
+        seg_list.extend(jieba.cut(text, cut_all=False))  # 使用精确模式
+    return seg_list
+
+def remove_stopwords(words, stopword_file):
+    stopwords = set()
+    try:
+        with open(stopword_file, 'r', encoding='utf-8') as f:
+            for line in f:
+                stopwords.add(line.strip())
+    except FileNotFoundError:
+        print(f'停用词文件 {stopword_file} 未找到，将不移除停用词')
+        return words
+    except Exception as e:
+        print(f'读取停用词文件失败: {e}，将不移除停用词')
+        return words
+
+    filtered_words = [word for word in words if word not in stopwords and len(word) &gt; 1]  # 去除停用词和单字
+    return filtered_words
+
+def create_wordcloud(words, output_file, font_path='msyh.ttc'): # 默认使用微软雅黑字体
+    text = ' '.join(words)
+    try:
+        wordcloud = WordCloud(
+            font_path=font_path,  # 设置字体，显示中文
+            background_color='white',  # 设置背景颜色
+            width=800,  # 设置宽度
+            height=600,  # 设置高度
+            max_words=200,  # 设置最大显示的词语数量
+            collocations=False # 避免词语重复组合
+        ).generate(text)
+
+        plt.figure(figsize=(10, 8), facecolor='white')
+        plt.imshow(wordcloud)
+        plt.axis('off')
+        plt.tight_layout(pad=0)
+        plt.savefig(output_file, dpi=300)  # 保存为图片
+        plt.show()
+        print(f'词云已保存到 {output_file}')
+
+    except Exception as e:
+        print(f'生成词云失败: {e}')
+
+
+if __name__ == '__main__':
+    # 1. 设置CSV文件路径
+    csv_file_paths = [
+        r'自己的文件路径',
+        r'可填多个'
+    ]
+
+    # 2. 设置停用词文件路径
+    stopword_file = r'停用词文件路径'  # 请替换成你的停用词文件路径，如果没有可以不设置
+
+    # 3. 设置输出词云图片的文件路径
+    output_wordcloud_file = r'输出图片文件路径\wordcloud.png'
+
+    # 4. 读取CSV文件
+    all_texts = read_csv_files(csv_file_paths)
+
+    # 5. 分词
+    words = segment_text(all_texts)
+
+    # 6. 移除停用词
+    if os.path.exists(stopword_file):
+        filtered_words = remove_stopwords(words, stopword_file)
+    else:
+        filtered_words = words
+        print('未找到停用词文件，跳过停用词移除步骤')
+
+    # 7. 生成词云
+    create_wordcloud(filtered_words, output_wordcloud_file)
+
+```
+# 效果
+
+![Image](https://github.com/user-attachments/assets/9168b60a-ff52-46a9-98dc-6d343bae1214)。</description><guid isPermaLink="true">https://sssuer77.github.io/post/la-qu-wei-xin-liao-tian-ji-lu-sheng-cheng-ci-yun.html</guid><pubDate>Mon, 19 May 2025 08:48:53 +0000</pubDate></item><item><title>最长上升子序列</title><link>https://sssuer77.github.io/post/zui-chang-shang-sheng-zi-xu-lie.html</link><description>&lt;a href='https://blog.csdn.net/lxt_Lucia/article/details/81206439' target='_blank'&gt;
 参考博客
 &lt;/a&gt;
 
