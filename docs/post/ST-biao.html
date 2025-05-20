@@ -16,7 +16,8 @@
 using namespace std;
 #define MaxN 100002
 int f[MaxN][22];
-int N, M;
+int __lg[100001] = { -1 };
+int n, m;
 inline int read() {
     int x = 0, f = 1;
     char ch = getchar();
@@ -35,29 +36,31 @@ inline int read() {
 
     return x * f;
 }
-int main() {
-    scanf('%d%d', &N, &M);
+void solve() {
+    cin >> n >> m;
 
-    for (int i = 1; i <= N; i++) {
+    for (int i = 1; i <= n; i++) {
         f[i][0] = read();
+        __lg[i] = __lg[i / 2] + 1;
     }
+
+    //f[j][i]表示从j开始到j+(1<<i)-1的区间
 
     //更新f数组
     for (int i = 1; i < 22; i++) {
-        for (int j = 1; j + (1 << i) - 1 <= N; j++) {
+        for (int j = 1; j + (1 << i) - 1 <= n; j++) {
             f[j][i] = max(f[j][i - 1], f[j + (1 << (i - 1))][i - 1]);
         }
     }
 
     //打印答案
-    for (int i = 0; i < M; i++) {
+    for (int i = 0; i < m; i++) {
         int l = read();
         int r = read();
-        int s = __lg(r - l + 1);
-        printf('%d\n', max(f[l][s], f[r - (1 << s) + 1][s]));
+        int s = __lg[r - l + 1];
+        cout<< max(f[l][s], f[r - (1 << s) + 1][s])<<'\n';
     }
 
-    return 0;
 }
 ```。">
 <meta property="og:title" content="ST表">
@@ -67,7 +70,8 @@ int main() {
 using namespace std;
 #define MaxN 100002
 int f[MaxN][22];
-int N, M;
+int __lg[100001] = { -1 };
+int n, m;
 inline int read() {
     int x = 0, f = 1;
     char ch = getchar();
@@ -86,29 +90,31 @@ inline int read() {
 
     return x * f;
 }
-int main() {
-    scanf('%d%d', &N, &M);
+void solve() {
+    cin >> n >> m;
 
-    for (int i = 1; i <= N; i++) {
+    for (int i = 1; i <= n; i++) {
         f[i][0] = read();
+        __lg[i] = __lg[i / 2] + 1;
     }
+
+    //f[j][i]表示从j开始到j+(1<<i)-1的区间
 
     //更新f数组
     for (int i = 1; i < 22; i++) {
-        for (int j = 1; j + (1 << i) - 1 <= N; j++) {
+        for (int j = 1; j + (1 << i) - 1 <= n; j++) {
             f[j][i] = max(f[j][i - 1], f[j + (1 << (i - 1))][i - 1]);
         }
     }
 
     //打印答案
-    for (int i = 0; i < M; i++) {
+    for (int i = 0; i < m; i++) {
         int l = read();
         int r = read();
-        int s = __lg(r - l + 1);
-        printf('%d\n', max(f[l][s], f[r - (1 << s) + 1][s]));
+        int s = __lg[r - l + 1];
+        cout<< max(f[l][s], f[r - (1 << s) + 1][s])<<'\n';
     }
 
-    return 0;
 }
 ```。">
 <meta property="og:type" content="article">
@@ -186,7 +192,8 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
 #<span class="pl-k">define</span> <span class="pl-en">MaxN</span> <span class="pl-c1">100002</span>
 <span class="pl-k">int</span> f[MaxN][<span class="pl-c1">22</span>];
-<span class="pl-k">int</span> N, M;
+<span class="pl-k">int</span> __lg[<span class="pl-c1">100001</span>] = { -<span class="pl-c1">1</span> };
+<span class="pl-k">int</span> n, m;
 <span class="pl-k">inline</span> <span class="pl-k">int</span> <span class="pl-en">read</span>() {
     <span class="pl-k">int</span> x = <span class="pl-c1">0</span>, f = <span class="pl-c1">1</span>;
     <span class="pl-k">char</span> ch = <span class="pl-c1">getchar</span>();
@@ -205,29 +212,31 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
     <span class="pl-k">return</span> x * f;
 }
-<span class="pl-k">int</span> <span class="pl-en">main</span>() {
-    <span class="pl-c1">scanf</span>(<span class="pl-s"><span class="pl-pds">"</span>%d%d<span class="pl-pds">"</span></span>, &amp;N, &amp;M);
+<span class="pl-k">void</span> <span class="pl-en">solve</span>() {
+    cin &gt;&gt; n &gt;&gt; m;
 
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">1</span>; i &lt;= N; i++) {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">1</span>; i &lt;= n; i++) {
         f[i][<span class="pl-c1">0</span>] = <span class="pl-c1">read</span>();
+        __lg[i] = __lg[i / <span class="pl-c1">2</span>] + <span class="pl-c1">1</span>;
     }
+
+    <span class="pl-c"><span class="pl-c">//</span>f[j][i]表示从j开始到j+(1&lt;&lt;i)-1的区间</span>
 
     <span class="pl-c"><span class="pl-c">//</span>更新f数组</span>
     <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">1</span>; i &lt; <span class="pl-c1">22</span>; i++) {
-        <span class="pl-k">for</span> (<span class="pl-k">int</span> j = <span class="pl-c1">1</span>; j + (<span class="pl-c1">1</span> &lt;&lt; i) - <span class="pl-c1">1</span> &lt;= N; j++) {
+        <span class="pl-k">for</span> (<span class="pl-k">int</span> j = <span class="pl-c1">1</span>; j + (<span class="pl-c1">1</span> &lt;&lt; i) - <span class="pl-c1">1</span> &lt;= n; j++) {
             f[j][i] = <span class="pl-c1">max</span>(f[j][i - <span class="pl-c1">1</span>], f[j + (<span class="pl-c1">1</span> &lt;&lt; (i - <span class="pl-c1">1</span>))][i - <span class="pl-c1">1</span>]);
         }
     }
 
     <span class="pl-c"><span class="pl-c">//</span>打印答案</span>
-    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; M; i++) {
+    <span class="pl-k">for</span> (<span class="pl-k">int</span> i = <span class="pl-c1">0</span>; i &lt; m; i++) {
         <span class="pl-k">int</span> l = <span class="pl-c1">read</span>();
         <span class="pl-k">int</span> r = <span class="pl-c1">read</span>();
-        <span class="pl-k">int</span> s = <span class="pl-c1">__lg</span>(r - l + <span class="pl-c1">1</span>);
-        <span class="pl-c1">printf</span>(<span class="pl-s"><span class="pl-pds">"</span>%d<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, <span class="pl-c1">max</span>(f[l][s], f[r - (<span class="pl-c1">1</span> &lt;&lt; s) + <span class="pl-c1">1</span>][s]));
+        <span class="pl-k">int</span> s = __lg[r - l + <span class="pl-c1">1</span>];
+        cout&lt;&lt; <span class="pl-c1">max</span>(f[l][s], f[r - (<span class="pl-c1">1</span> &lt;&lt; s) + <span class="pl-c1">1</span>][s])&lt;&lt;<span class="pl-s"><span class="pl-pds">'</span><span class="pl-cce">\n</span><span class="pl-pds">'</span></span>;
     }
 
-    <span class="pl-k">return</span> <span class="pl-c1">0</span>;
 }</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
