@@ -77,22 +77,22 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h2>自然溢出法</h2>
 <p>开一个unsigned long long，大小2^64-1，利用无负数的性质自然溢出。</p>
 <h3>Hash公式：</h3>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/1d331e75-a51f-4eb5-9771-7734010f9624"><img src="https://github.com/user-attachments/assets/1d331e75-a51f-4eb5-9771-7734010f9624" alt="image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/1d331e75-a51f-4eb5-9771-7734010f9624"><img src="https://github.com/user-attachments/assets/1d331e75-a51f-4eb5-9771-7734010f9624" alt="image" style="max-width: 100%; height: auto;"></a></p>
 <h2>单哈希法</h2>
 <p>增加了Mod，代替自然溢出。自然溢出也是单哈希。</p>
 <h3>Hash公式</h3>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c5e17705-01bc-4d58-b3ea-397f51681282"><img src="https://github.com/user-attachments/assets/c5e17705-01bc-4d58-b3ea-397f51681282" alt="image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c5e17705-01bc-4d58-b3ea-397f51681282"><img src="https://github.com/user-attachments/assets/c5e17705-01bc-4d58-b3ea-397f51681282" alt="image" style="max-width: 100%; height: auto;"></a></p>
 <h2>双哈希法</h2>
 <p>哈希大法最怕的就是冲突，因此取两组Base和Mod，将哈希结果作为二元组保存，冲突概率极低。</p>
 <h3>Hash公式</h3>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/eb5e2172-b660-46ae-90a5-33fa573f73e7"><img src="https://github.com/user-attachments/assets/eb5e2172-b660-46ae-90a5-33fa573f73e7" alt="image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/eb5e2172-b660-46ae-90a5-33fa573f73e7"><img src="https://github.com/user-attachments/assets/eb5e2172-b660-46ae-90a5-33fa573f73e7" alt="image" style="max-width: 100%; height: auto;"></a></p>
 <h1>获取子串哈希值</h1>
 <p>hash[i]存的是[0,i]子串的哈希值，那么如何求任意子串的哈希值呢？</p>
 <h2>例子</h2>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8ce658fd-1c99-4ec5-8ed8-c0cc8f509c2c"><img src="https://github.com/user-attachments/assets/8ce658fd-1c99-4ec5-8ed8-c0cc8f509c2c" alt="image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8ce658fd-1c99-4ec5-8ed8-c0cc8f509c2c"><img src="https://github.com/user-attachments/assets/8ce658fd-1c99-4ec5-8ed8-c0cc8f509c2c" alt="image" style="max-width: 100%; height: auto;"></a></p>
 <h2>公式</h2>
 <p>面对取模时一定要谨慎谨慎再谨慎。。。<br>
-<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/83b309b4-6430-457c-a1ab-649d5f452f9c"><img src="https://github.com/user-attachments/assets/83b309b4-6430-457c-a1ab-649d5f452f9c" alt="image" style="max-width: 100%;"></a></p>
+<a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/83b309b4-6430-457c-a1ab-649d5f452f9c"><img src="https://github.com/user-attachments/assets/83b309b4-6430-457c-a1ab-649d5f452f9c" alt="image" style="max-width: 100%; height: auto;"></a></p>
 <h1>Tips</h1>
 <p>OI Wiki中写了卡掉单哈希，溢出法的方法，说明单哈希的风险还是挺大的，如果题目时间允许还是写个双哈希比较安全，但在运行速度上溢出法是最快的，也是最容易卡掉的。</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
