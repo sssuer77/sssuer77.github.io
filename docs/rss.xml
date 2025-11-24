@@ -1,5 +1,20 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Mon, 24 Nov 2025 02:38:11 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>微机房内学生机如何摆脱教师机的控制（极域）</title><link>https://sssuer77.github.io/post/wei-ji-fang-nei-xue-sheng-ji-ru-he-bai-tuo-jiao-shi-ji-de-kong-zhi-%EF%BC%88-ji-yu-%EF%BC%89.html</link><description>## 前言
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>ssuer77的博客</title><link>https://sssuer77.github.io</link><description>一个个人博客，记录学习。</description><copyright>ssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Mon, 24 Nov 2025 03:04:45 +0000</lastBuildDate><managingEditor>ssuer77的博客</managingEditor><ttl>60</ttl><webMaster>ssuer77的博客</webMaster><item><title>MySQL Win11下安装mysql过程中出现服务路径错误</title><link>https://sssuer77.github.io/post/MySQL%20Win11-xia-an-zhuang-mysql-guo-cheng-zhong-chu-xian-fu-wu-lu-jing-cuo-wu.html</link><description>## 前言
+重装mysql过程中，在执行    **net start mysql**   启动mysql服务时，出现错误
+
+&lt;img width='556' height='124' alt='Image' src='https://github.com/user-attachments/assets/569bdfca-818a-4a92-9640-0127aba374aa' /&gt;
+
+---
+
+## 前提
+* 已彻底卸载旧版本mysql
+* 安装路径不是默认位置
+* 已经配置环境变量
+
+---
+
+## 解决思路
+报出找不到文件的错误，首先检查路径问题，结合论坛中其他博客，在mysql服务中发现mysql的执行路径错误。</description><guid isPermaLink="true">https://sssuer77.github.io/post/MySQL%20Win11-xia-an-zhuang-mysql-guo-cheng-zhong-chu-xian-fu-wu-lu-jing-cuo-wu.html</guid><pubDate>Mon, 24 Nov 2025 03:04:01 +0000</pubDate></item><item><title>微机房内学生机如何摆脱教师机的控制（极域）</title><link>https://sssuer77.github.io/post/wei-ji-fang-nei-xue-sheng-ji-ru-he-bai-tuo-jiao-shi-ji-de-kong-zhi-%EF%BC%88-ji-yu-%EF%BC%89.html</link><description>## 前言
 2025.11.24，在机房上早八，昨晚睡得不好，匆匆忙忙踩点来到机房，惊恐发现没带充电器，查看手机电脑电量，都即将关机，有点崩溃，只能在手机仅剩的十几格电量耗尽之前搜寻到极域软件摆脱控制的方法，功夫不负有心人，反复尝试下找到了适用于我所在机房的方法。</description><guid isPermaLink="true">https://sssuer77.github.io/post/wei-ji-fang-nei-xue-sheng-ji-ru-he-bai-tuo-jiao-shi-ji-de-kong-zhi-%EF%BC%88-ji-yu-%EF%BC%89.html</guid><pubDate>Mon, 24 Nov 2025 02:37:42 +0000</pubDate></item><item><title>Windows下如何检查端口占用情况</title><link>https://sssuer77.github.io/post/Windows-xia-ru-he-jian-cha-duan-kou-zhan-yong-qing-kuang.html</link><description>## 前言
 重装mysql服务时，启用mysql服务失败，怀疑是mysql默认端口3306被占用，遂检查端口占用情况，写一篇博客记录一下。</description><guid isPermaLink="true">https://sssuer77.github.io/post/Windows-xia-ru-he-jian-cha-duan-kou-zhan-yong-qing-kuang.html</guid><pubDate>Mon, 24 Nov 2025 02:09:41 +0000</pubDate></item><item><title>如何彻底卸载干净mysql</title><link>https://sssuer77.github.io/post/ru-he-che-di-xie-zai-gan-jing-mysql.html</link><description>## 前言
 今天想重装一下MySQL，担心自己之前乱装可能导致莫名错误，结果重装后服务启动不太正常，发现是上一个版本的MySQL没有卸载干净，遂参考其他博客完成了彻底的卸载，自己也写一个博客记录一下。</description><guid isPermaLink="true">https://sssuer77.github.io/post/ru-he-che-di-xie-zai-gan-jing-mysql.html</guid><pubDate>Sun, 23 Nov 2025 14:39:50 +0000</pubDate></item><item><title>串流，如何拥有一块副屏</title><link>https://sssuer77.github.io/post/chuan-liu-%EF%BC%8C-ru-he-yong-you-yi-kuai-fu-ping.html</link><description>上个月本来配置好笔记本电脑作为台式机的副屏，结果重装后有些忘记怎么配置了，遂又去看了一遍教学，顺便写个博客记录一下。</description><guid isPermaLink="true">https://sssuer77.github.io/post/chuan-liu-%EF%BC%8C-ru-he-yong-you-yi-kuai-fu-ping.html</guid><pubDate>Mon, 17 Nov 2025 12:37:27 +0000</pubDate></item><item><title>Everything工具</title><link>https://sssuer77.github.io/post/Everything-gong-ju.html</link><description>
