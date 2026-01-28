@@ -297,7 +297,7 @@ int main()
 <meta property="og:url" content="https://sssuer77.github.io/post/zui-duan-lu.html">
 <meta property="og:image" content="https://avatars.githubusercontent.com/u/178136927?v=4">
 <title>最短路</title>
-
+<link href="//unpkg.com/@wooorm/starry-night@2.1.1/style/both.css" rel="stylesheet" />
 
 
 </head>
@@ -321,7 +321,17 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     body {padding: 8px;}
     .postTitle{font-size:24px;}
 }
-
+.copy-feedback {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 50px;
+    color: var(--color-fg-on-emphasis);
+    background-color: var(--color-fg-muted);
+    border-radius: 3px;
+    padding: 5px 8px;
+    font-size: 12px;
+}
 </style>
 
 
@@ -360,214 +370,208 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <h1>朴素Dijkstra</h1>
 <p>时间复杂度为O(n^2)<br>
 核心代码：</p>
-<pre lang="cpp" class="notranslate"><code class="notranslate">for(int i=0; i&lt;n; i++)
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">for</span>(<span class="pl-k">int</span> i=<span class="pl-c1">0</span>; i&lt;n; i++)
 	{
-		int t = -1;
-		for(int j=1; j&lt;=n; j++)   // 在没有确定最短路中的所有点找出距离最短的那个点 t 
-		   if(!st[j] &amp;&amp; (t == -1 || dist[t] &gt; dist[j]))
+		<span class="pl-k">int</span> t = -<span class="pl-c1">1</span>;
+		<span class="pl-k">for</span>(<span class="pl-k">int</span> j=<span class="pl-c1">1</span>; j&lt;=n; j++)   <span class="pl-c"><span class="pl-c">//</span> 在没有确定最短路中的所有点找出距离最短的那个点 t </span>
+		   <span class="pl-k">if</span>(!st[j] &amp;&amp; (t == -<span class="pl-c1">1</span> || dist[t] &gt; dist[j]))
 		    t=j;                  
 		    
-		st[t]=true; // 代表 t 这个点已经确定最短路了
+		st[t]=<span class="pl-c1">true</span>; <span class="pl-c"><span class="pl-c">//</span> 代表 t 这个点已经确定最短路了</span>
 		
-		for(int j=1; j&lt;=n; j++) // 用 t 更新其他点的最短距离 
-		 dist[j] = min(dist[j],dist[t]+g[t][j]);
-	 } 
-</code></pre>
+		<span class="pl-k">for</span>(<span class="pl-k">int</span> j=<span class="pl-c1">1</span>; j&lt;=n; j++) <span class="pl-c"><span class="pl-c">//</span> 用 t 更新其他点的最短距离 </span>
+		 dist[j] = <span class="pl-c1">min</span>(dist[j],dist[t]+g[t][j]);
+	 } </pre></div>
 <h1>堆优化Dijkstra</h1>
 <p>时间复杂度O(nlogn+m)<br>
 模板：</p>
-<pre lang="cpp" class="notranslate"><code class="notranslate">#include&lt;iostream&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;queue&gt;
-using namespace std;
-typedef pair&lt;int,int&gt; PII; //first存距离，second存结点编号 
-const int N = 2e5+10;
-int n,m;
-int h[N],w[N],e[N],ne[N],idx; // 邻接表的存储 
-int dist[N]; // 第 i 个点到起点的最短距离
-bool st[N]; // 代表第 i 个点的最短路是否确定、是否需要更新 
+<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span><span class="pl-s"><span class="pl-pds">&lt;</span>iostream<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span><span class="pl-s"><span class="pl-pds">&lt;</span>cstring<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span><span class="pl-s"><span class="pl-pds">&lt;</span>algorithm<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span><span class="pl-s"><span class="pl-pds">&lt;</span>queue<span class="pl-pds">&gt;</span></span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
+<span class="pl-k">typedef</span> pair&lt;<span class="pl-k">int</span>,<span class="pl-k">int</span>&gt; PII; <span class="pl-c"><span class="pl-c">//</span>first存距离，second存结点编号 </span>
+<span class="pl-k">const</span> <span class="pl-k">int</span> N = <span class="pl-c1">2e5</span>+<span class="pl-c1">10</span>;
+<span class="pl-k">int</span> n,m;
+<span class="pl-k">int</span> h[N],w[N],e[N],ne[N],idx; <span class="pl-c"><span class="pl-c">//</span> 邻接表的存储 </span>
+<span class="pl-k">int</span> dist[N]; <span class="pl-c"><span class="pl-c">//</span> 第 i 个点到起点的最短距离</span>
+<span class="pl-k">bool</span> st[N]; <span class="pl-c"><span class="pl-c">//</span> 代表第 i 个点的最短路是否确定、是否需要更新 </span>
 
-void add(int a,int b,int c)
+<span class="pl-k">void</span> <span class="pl-en">add</span>(<span class="pl-k">int</span> a,<span class="pl-k">int</span> b,<span class="pl-k">int</span> c)
 {
 	e[idx] = b,w[idx] = c,ne[idx] = h[a],h[a] = idx++;
 }
 
-int dijkstra()
+<span class="pl-k">int</span> <span class="pl-en">dijkstra</span>()
 {
-	memset(dist,0x3f,sizeof(dist)); // 将所有距离初始化正无穷
-	dist[1] = 0;  // 第一个点到起点的距离为 0  
+	<span class="pl-c1">memset</span>(dist,<span class="pl-c1">0x3f</span>,<span class="pl-k">sizeof</span>(dist)); <span class="pl-c"><span class="pl-c">//</span> 将所有距离初始化正无穷</span>
+	dist[<span class="pl-c1">1</span>] = <span class="pl-c1">0</span>;  <span class="pl-c"><span class="pl-c">//</span> 第一个点到起点的距离为 0  </span>
 	
-	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt;&gt; heap; // 小根堆
-	heap.push({0,1}); //把 1 号点放入堆中 
+	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt;&gt; heap; <span class="pl-c"><span class="pl-c">//</span> 小根堆</span>
+	heap.<span class="pl-c1">push</span>({<span class="pl-c1">0</span>,<span class="pl-c1">1</span>}); <span class="pl-c"><span class="pl-c">//</span>把 1 号点放入堆中 </span>
 	
-	while(heap.size()) // 堆不空
+	<span class="pl-k">while</span>(heap.<span class="pl-c1">size</span>()) <span class="pl-c"><span class="pl-c">//</span> 堆不空</span>
 	{
-	   	PII t = heap.top(); //找到当前距离最小的点
-		heap.pop();
+	   	PII t = heap.<span class="pl-c1">top</span>(); <span class="pl-c"><span class="pl-c">//</span>找到当前距离最小的点</span>
+		heap.<span class="pl-c1">pop</span>();
 		
-		int ver = t.second,distance = t.first; // ver为编号，distance为距离
-		if(st[ver]) continue;   // 重边的话不用更新其他点了
-		st[ver] = true;   //标记 t 已经确定最短路
+		<span class="pl-k">int</span> ver = t.<span class="pl-smi">second</span>,distance = t.<span class="pl-smi">first</span>; <span class="pl-c"><span class="pl-c">//</span> ver为编号，distance为距离</span>
+		<span class="pl-k">if</span>(st[ver]) <span class="pl-k">continue</span>;   <span class="pl-c"><span class="pl-c">//</span> 重边的话不用更新其他点了</span>
+		st[ver] = <span class="pl-c1">true</span>;   <span class="pl-c"><span class="pl-c">//</span>标记 t 已经确定最短路</span>
 		
-		for(int i = h[ver]; i!=-1; i=ne[i])  // 用 t 更新其他点的最短距离
+		<span class="pl-k">for</span>(<span class="pl-k">int</span> i = h[ver]; i!=-<span class="pl-c1">1</span>; i=ne[i])  <span class="pl-c"><span class="pl-c">//</span> 用 t 更新其他点的最短距离</span>
 		{
-			int j = e[i];
-			if(dist[j] &gt; distance + w[i])
+			<span class="pl-k">int</span> j = e[i];
+			<span class="pl-k">if</span>(dist[j] &gt; distance + w[i])
 			{
 				dist[j] = distance + w[i];
-				heap.push({dist[j],j}); //入堆
+				heap.<span class="pl-c1">push</span>({dist[j],j}); <span class="pl-c"><span class="pl-c">//</span>入堆</span>
 			}
 		}
 	}  
 	 
-	if(dist[n] == 0x3f3f3f3f) return -1;  // 说明 1 和 n 是不连通的，不存在最短路 
-	return dist[n];
+	<span class="pl-k">if</span>(dist[n] == <span class="pl-c1">0x3f3f3f3f</span>) <span class="pl-k">return</span> -<span class="pl-c1">1</span>;  <span class="pl-c"><span class="pl-c">//</span> 说明 1 和 n 是不连通的，不存在最短路 </span>
+	<span class="pl-k">return</span> dist[n];
 }
-int main()
+<span class="pl-k">int</span> <span class="pl-en">main</span>()
 {
-	memset(h,-1,sizeof(h));
+	<span class="pl-c1">memset</span>(h,-<span class="pl-c1">1</span>,<span class="pl-k">sizeof</span>(h));
 	cin &gt;&gt; n &gt;&gt; m;
-	while(m--)
+	<span class="pl-k">while</span>(m--)
 	{
-		int a,b,c;
-		scanf("%d%d%d",&amp;a,&amp;b,&amp;c);
-		add(a,b,c);
+		<span class="pl-k">int</span> a,b,c;
+		<span class="pl-c1">scanf</span>(<span class="pl-s"><span class="pl-pds">"</span>%d%d%d<span class="pl-pds">"</span></span>,&amp;a,&amp;b,&amp;c);
+		<span class="pl-c1">add</span>(a,b,c);
 	}
-	cout &lt;&lt; dijkstra(); 
-	return 0;
-}
-</code></pre>
+	cout &lt;&lt; <span class="pl-c1">dijkstra</span>(); 
+	<span class="pl-k">return</span> <span class="pl-c1">0</span>;
+}</pre></div>
 <h1>Bellman-Ford</h1>
 <p>时间复杂度O(nm)<br>
 模板：</p>
-<pre lang="cpp" class="notranslate"><code class="notranslate">#include&lt;cstring&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-const int N = 510,M = 10010;
+<div class="highlight highlight-source-c++"><pre class="notranslate">#<span class="pl-k">include</span><span class="pl-s"><span class="pl-pds">&lt;</span>cstring<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span><span class="pl-s"><span class="pl-pds">&lt;</span>iostream<span class="pl-pds">&gt;</span></span>
+#<span class="pl-k">include</span><span class="pl-s"><span class="pl-pds">&lt;</span>algorithm<span class="pl-pds">&gt;</span></span>
+<span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
+<span class="pl-k">const</span> <span class="pl-k">int</span> N = <span class="pl-c1">510</span>,M = <span class="pl-c1">10010</span>;
 
-int n,m,k;
-int dist[N],backup[N]; //backup数组为上次
-struct edges
+<span class="pl-k">int</span> n,m,k;
+<span class="pl-k">int</span> dist[N],backup[N]; <span class="pl-c"><span class="pl-c">//</span>backup数组为上次</span>
+<span class="pl-k">struct</span> <span class="pl-en">edges</span>
 {
-   	int a,b,w; // a-&gt;b权值为w的边 
+   	<span class="pl-k">int</span> a,b,w; <span class="pl-c"><span class="pl-c">//</span> a-&gt;b权值为w的边 </span>
 }edge[M];
 
-int bellman_ford()
+<span class="pl-k">int</span> <span class="pl-en">bellman_ford</span>()
 {
-	memset(dist,0x3f,sizeof(dist));
-	dist[1] = 0;
+	<span class="pl-c1">memset</span>(dist,<span class="pl-c1">0x3f</span>,<span class="pl-k">sizeof</span>(dist));
+	dist[<span class="pl-c1">1</span>] = <span class="pl-c1">0</span>;
 	
-	for(int i=0; i&lt;k; i++) 
+	<span class="pl-k">for</span>(<span class="pl-k">int</span> i=<span class="pl-c1">0</span>; i&lt;k; i++) 
 	{
-		memcpy(backup,dist,sizeof(dist)); //备份
-		for(int j=0; j&lt;m; j++)   // 枚举所有边 
+		<span class="pl-c1">memcpy</span>(backup,dist,<span class="pl-k">sizeof</span>(dist)); <span class="pl-c"><span class="pl-c">//</span>备份</span>
+		<span class="pl-k">for</span>(<span class="pl-k">int</span> j=<span class="pl-c1">0</span>; j&lt;m; j++)   <span class="pl-c"><span class="pl-c">//</span> 枚举所有边 </span>
 		{
-		   int a = edge[j].a, b = edge[j].b, w=edge[j].w;	
-		   dist[b] = min(dist[b],backup[a]+w); // 用备份更新 
+		   <span class="pl-k">int</span> a = edge[j].<span class="pl-smi">a</span>, b = edge[j].<span class="pl-smi">b</span>, w=edge[j].<span class="pl-smi">w</span>;	
+		   dist[b] = <span class="pl-c1">min</span>(dist[b],backup[a]+w); <span class="pl-c"><span class="pl-c">//</span> 用备份更新 </span>
 		}
 	}
-	if(dist[n] &gt; 0x3f3f3f3f/2) return -1;
-	return dist[n];
+	<span class="pl-k">if</span>(dist[n] &gt; <span class="pl-c1">0x3f3f3f3f</span>/<span class="pl-c1">2</span>) <span class="pl-k">return</span> -<span class="pl-c1">1</span>;
+	<span class="pl-k">return</span> dist[n];
 }
-int main()
+<span class="pl-k">int</span> <span class="pl-en">main</span>()
 {
     cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;
-	for(int i=0; i&lt;m; i++)
+	<span class="pl-k">for</span>(<span class="pl-k">int</span> i=<span class="pl-c1">0</span>; i&lt;m; i++)
 	{
-	   int a,b,w;
+	   <span class="pl-k">int</span> a,b,w;
 	   cin &gt;&gt; a &gt;&gt; b &gt;&gt; w;
 	   edge[i] = {a,b,w}; 	
 	}	
-	int t = bellman_ford();
+	<span class="pl-k">int</span> t = <span class="pl-c1">bellman_ford</span>();
 	
-	if(t == -1) cout &lt;&lt; "impossible";
-	else cout &lt;&lt; t;
-	return 0;
-} 
-</code></pre>
+	<span class="pl-k">if</span>(t == -<span class="pl-c1">1</span>) cout &lt;&lt; <span class="pl-s"><span class="pl-pds">"</span>impossible<span class="pl-pds">"</span></span>;
+	<span class="pl-k">else</span> cout &lt;&lt; t;
+	<span class="pl-k">return</span> <span class="pl-c1">0</span>;
+} </pre></div>
 <h1>SPFA</h1>
 <p>是对Bellman-Ford的优化，但是最坏情况下依然是O(nm)的时间复杂度。<br>
 模板：</p>
-<pre lang="cpp" class="notranslate"><code class="notranslate">int spfa()
-{// bool st[N]： 存第 i 个点是不是在队列中，防止存重复的点 
-	memset(dist,0x3f,sizeof(dist));
-	dist[1] = 0;
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">int</span> <span class="pl-en">spfa</span>()
+{<span class="pl-c"><span class="pl-c">//</span> bool st[N]： 存第 i 个点是不是在队列中，防止存重复的点 </span>
+	<span class="pl-c1">memset</span>(dist,<span class="pl-c1">0x3f</span>,<span class="pl-k">sizeof</span>(dist));
+	dist[<span class="pl-c1">1</span>] = <span class="pl-c1">0</span>;
 	
-	queue&lt;int&gt; q; //存储所有待更新的点
-	q.push(1);  // 1号点入队 
-	st[1] = true;
-	while(q.size()) // 队列不空
+	queue&lt;<span class="pl-k">int</span>&gt; q; <span class="pl-c"><span class="pl-c">//</span>存储所有待更新的点</span>
+	q.<span class="pl-c1">push</span>(<span class="pl-c1">1</span>);  <span class="pl-c"><span class="pl-c">//</span> 1号点入队 </span>
+	st[<span class="pl-c1">1</span>] = <span class="pl-c1">true</span>;
+	<span class="pl-k">while</span>(q.<span class="pl-c1">size</span>()) <span class="pl-c"><span class="pl-c">//</span> 队列不空</span>
 	{
-	   int t = q.front(); //取队头 
-	   q.pop();
-	   st[t] = false; // 代表这个点已经不在队列了，因为存在边权为负数，某个点可能会被更新多次，所以可以多次入队和出队。
+	   <span class="pl-k">int</span> t = q.<span class="pl-c1">front</span>(); <span class="pl-c"><span class="pl-c">//</span>取队头 </span>
+	   q.<span class="pl-c1">pop</span>();
+	   st[t] = <span class="pl-c1">false</span>; <span class="pl-c"><span class="pl-c">//</span> 代表这个点已经不在队列了，因为存在边权为负数，某个点可能会被更新多次，所以可以多次入队和出队。</span>
 	   
-	   for(int i = h[t]; i!=-1; i=ne[i]) // 更新 t 的所有临边结点的最短路 
+	   <span class="pl-k">for</span>(<span class="pl-k">int</span> i = h[t]; i!=-<span class="pl-c1">1</span>; i=ne[i]) <span class="pl-c"><span class="pl-c">//</span> 更新 t 的所有临边结点的最短路 </span>
 	   {
-	   	 int j = e[i];
-	   	 if(dist[j] &gt; dist[t]+w[i])
+	   	 <span class="pl-k">int</span> j = e[i];
+	   	 <span class="pl-k">if</span>(dist[j] &gt; dist[t]+w[i])
 	   	 {
 	   	    dist[j] = dist[t] + w[i];
-			if(!st[j])  //如果 j 不在队列，让 j 入队 
+			<span class="pl-k">if</span>(!st[j])  <span class="pl-c"><span class="pl-c">//</span>如果 j 不在队列，让 j 入队 </span>
 			{
-				q.push(j); 
-				st[j] = true;  // 标记 j 在队中 
+				q.<span class="pl-c1">push</span>(j); 
+				st[j] = <span class="pl-c1">true</span>;  <span class="pl-c"><span class="pl-c">//</span> 标记 j 在队中 </span>
 			} 	    	
 		 }
 	   }	
 	} 
-	 if(dist[n] == 0x3f3f3f3f) return -1; // 不存在最短路 
-	 return dist[n]; 
-}
-</code></pre>
+	 <span class="pl-k">if</span>(dist[n] == <span class="pl-c1">0x3f3f3f3f</span>) <span class="pl-k">return</span> -<span class="pl-c1">1</span>; <span class="pl-c"><span class="pl-c">//</span> 不存在最短路 </span>
+	 <span class="pl-k">return</span> dist[n]; 
+}</pre></div>
 <h2>SPFA判断负环</h2>
 <p>用cnt数组记录每个节点最短路径的长度。</p>
-<pre lang="cpp" class="notranslate"><code class="notranslate">int spfa()
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">int</span> <span class="pl-en">spfa</span>()
 {
-	queue&lt;int&gt; q; 
-    for(int i=1; i&lt;=n; i++) //将所有结点入队
+	queue&lt;<span class="pl-k">int</span>&gt; q; 
+    <span class="pl-k">for</span>(<span class="pl-k">int</span> i=<span class="pl-c1">1</span>; i&lt;=n; i++) <span class="pl-c"><span class="pl-c">//</span>将所有结点入队</span>
 	{
-	    st[i] = true;
-		q.push(i);	  
+	    st[i] = <span class="pl-c1">true</span>;
+		q.<span class="pl-c1">push</span>(i);	  
     }
-	while(q.size()) // 队列不空
+	<span class="pl-k">while</span>(q.<span class="pl-c1">size</span>()) <span class="pl-c"><span class="pl-c">//</span> 队列不空</span>
 	{
-	   int t = q.front(); //取队头 
-	   q.pop();
-	   st[t] = false; // 代表这个点已经不在队列了
+	   <span class="pl-k">int</span> t = q.<span class="pl-c1">front</span>(); <span class="pl-c"><span class="pl-c">//</span>取队头 </span>
+	   q.<span class="pl-c1">pop</span>();
+	   st[t] = <span class="pl-c1">false</span>; <span class="pl-c"><span class="pl-c">//</span> 代表这个点已经不在队列了</span>
 	   
-	   for(int i = h[t]; i!=-1; i=ne[i]) // 更新 t 的所有临边结点的最短路 
+	   <span class="pl-k">for</span>(<span class="pl-k">int</span> i = h[t]; i!=-<span class="pl-c1">1</span>; i=ne[i]) <span class="pl-c"><span class="pl-c">//</span> 更新 t 的所有临边结点的最短路 </span>
 	   {
-	   	 int j = e[i];
-	   	 if(dist[j] &gt; dist[t]+w[i])
+	   	 <span class="pl-k">int</span> j = e[i];
+	   	 <span class="pl-k">if</span>(dist[j] &gt; dist[t]+w[i])
 	   	 {
 	   	    dist[j] = dist[t] + w[i];
-	   	    cnt[j] = cnt[t] + 1; // t到起点的边数+1 
+	   	    cnt[j] = cnt[t] + <span class="pl-c1">1</span>; <span class="pl-c"><span class="pl-c">//</span> t到起点的边数+1 </span>
 	   	    
-	   	    if(cnt[j] &gt;= n) return true;// 存在负环 
-			if(!st[j])  //如果 j 不在队列，让 j 入队 
+	   	    <span class="pl-k">if</span>(cnt[j] &gt;= n) <span class="pl-k">return</span> <span class="pl-c1">true</span>;<span class="pl-c"><span class="pl-c">//</span> 存在负环 </span>
+			<span class="pl-k">if</span>(!st[j])  <span class="pl-c"><span class="pl-c">//</span>如果 j 不在队列，让 j 入队 </span>
 			{
-				q.push(j); 
-				st[j] = true;  // 标记 j 在队中 
+				q.<span class="pl-c1">push</span>(j); 
+				st[j] = <span class="pl-c1">true</span>;  <span class="pl-c"><span class="pl-c">//</span> 标记 j 在队中 </span>
 			} 	    	
 		 }
 	   }	
 	} 
-	 return false;// 不存在负环 
-}
-</code></pre>
+	 <span class="pl-k">return</span> <span class="pl-c1">false</span>;<span class="pl-c"><span class="pl-c">//</span> 不存在负环 </span>
+}</pre></div>
 <h1>Floyd</h1>
 <p>动态规划思想，正确性证明有点复杂，暂时不理会。</p>
-<pre lang="cpp" class="notranslate"><code class="notranslate">void floyd()
+<div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-k">void</span> <span class="pl-en">floyd</span>()
 {
- for(int k=1; k&lt;=n; k++)
-   for(int i=1; i&lt;=n; i++)
-     for(int j=1; j&lt;=n; j++)
-      d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
-}
-</code></pre></div>
+ <span class="pl-k">for</span>(<span class="pl-k">int</span> k=<span class="pl-c1">1</span>; k&lt;=n; k++)
+   <span class="pl-k">for</span>(<span class="pl-k">int</span> i=<span class="pl-c1">1</span>; i&lt;=n; i++)
+     <span class="pl-k">for</span>(<span class="pl-k">int</span> j=<span class="pl-c1">1</span>; j&lt;=n; j++)
+      d[i][j] = <span class="pl-c1">min</span>(d[i][j], d[i][k] + d[k][j]);
+}</pre></div></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
 
 <button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
@@ -592,7 +596,7 @@ if(""!=""){
 </script></div>
 </body>
 <script>
-var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z', 'copy': 'M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z', 'check': 'M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z'};
 var utterancesLoad=0;
 
 let themeSettings={
@@ -665,7 +669,70 @@ function iFrameLoading(){
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const createClipboardHTML = (codeContent, additionalClasses = '') => `
+        <pre class="notranslate"><code class="notranslate">${codeContent}</code></pre>
+        <div class="clipboard-container position-absolute right-0 top-0 ${additionalClasses}">
+            <clipboard-copy class="ClipboardButton btn m-2 p-0" role="button" style="display: inherit;">
+                <svg height="16" width="16" class="octicon octicon-copy m-2"><path d="${IconList["copy"]}"></path></svg>
+                <svg height="16" width="16" class="octicon octicon-check color-fg-success m-2 d-none"><path d="${IconList["check"]}"></path></svg>
+            </clipboard-copy>
+            <div class="copy-feedback">Copied!</div>
+        </div>
+    `;
 
+    const handleCodeElements = (selector = '') => {
+        document.querySelectorAll(selector).forEach(codeElement => {
+            const codeContent = codeElement.innerHTML;
+            const newStructure = document.createElement('div');
+            newStructure.className = 'snippet-clipboard-content position-relative overflow-auto';
+            newStructure.innerHTML = createClipboardHTML(codeContent);
+
+            const parentElement = codeElement.parentElement;
+            if (selector.includes('highlight')) {
+                parentElement.insertBefore(newStructure, codeElement.nextSibling);
+                parentElement.removeChild(codeElement);
+            } else {
+                parentElement.parentElement.replaceChild(newStructure, parentElement);
+            }
+        });
+    };
+
+    handleCodeElements('pre.notranslate > code.notranslate');
+    handleCodeElements('div.highlight > pre.notranslate');
+
+    let currentFeedback = null;
+    document.querySelectorAll('clipboard-copy').forEach(copyButton => {
+        copyButton.addEventListener('click', () => {
+            const codeContent = copyButton.closest('.snippet-clipboard-content').innerText;
+            const tempTextArea = document.createElement('textarea');
+            tempTextArea.value = codeContent;
+            document.body.appendChild(tempTextArea);
+            tempTextArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempTextArea);
+
+            const copyIcon = copyButton.querySelector('.octicon-copy');
+            const checkIcon = copyButton.querySelector('.octicon-check');
+            const copyFeedback = copyButton.nextElementSibling;
+
+            if (currentFeedback && currentFeedback !== copyFeedback) {currentFeedback.style.display = 'none';}
+            currentFeedback = copyFeedback;
+
+            copyIcon.classList.add('d-none');
+            checkIcon.classList.remove('d-none');
+            copyFeedback.style.display = 'block';
+            copyButton.style.borderColor = 'var(--color-success-fg)';
+
+            setTimeout(() => {
+                copyIcon.classList.remove('d-none');
+                checkIcon.classList.add('d-none');
+                copyFeedback.style.display = 'none';
+                copyButton.style.borderColor = '';
+            }, 2000);
+        });
+    });
+});
 
 </script>
 
