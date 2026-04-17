@@ -90,24 +90,24 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <hr>
 <h2>步骤</h2>
 <h3>1. <strong>以管理员身份</strong>运行cmd命令行。</h3>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/12342932-2953-4996-94b4-56d5f952d1db"><img width="979" height="512" alt="Image" src="https://github.com/user-attachments/assets/12342932-2953-4996-94b4-56d5f952d1db" style="max-width: 100%; height: auto; max-height: 512px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/12342932-2953-4996-94b4-56d5f952d1db"><img width="979" height="512" alt="Image" src="https://github.com/user-attachments/assets/12342932-2953-4996-94b4-56d5f952d1db" style="max-width: 100%; height: auto; max-height: 512px;; aspect-ratio: 979 / 512; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <h3>2. 查看所有运行端口</h3>
 <p>在命令行输入命令</p>
 <div class="highlight highlight-source-batchfile"><pre class="notranslate"><span class="pl-k">netstat</span> -ano</pre></div>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/607afc99-57a5-4cec-8cb2-4f56b004199f"><img width="979" height="512" alt="Image" src="https://github.com/user-attachments/assets/607afc99-57a5-4cec-8cb2-4f56b004199f" style="max-width: 100%; height: auto; max-height: 512px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/607afc99-57a5-4cec-8cb2-4f56b004199f"><img width="979" height="512" alt="Image" src="https://github.com/user-attachments/assets/607afc99-57a5-4cec-8cb2-4f56b004199f" style="max-width: 100%; height: auto; max-height: 512px;; aspect-ratio: 979 / 512; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <h3>3. 检查端口占用情况</h3>
 <p>命令行命令</p>
 <div class="highlight highlight-source-batchfile"><pre class="notranslate"><span class="pl-k">netstat</span> -aon<span class="pl-k">|</span>findstr <span class="pl-s"><span class="pl-pds">"</span>3306<span class="pl-pds">"</span></span></pre></div>
 <h4>3.1 端口被占用</h4>
 <p>命令行返回占用端口进程的PID等信息</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/cf2b8c92-c9e3-4742-96b8-e15f43f23b49"><img width="829" height="81" alt="Image" src="https://github.com/user-attachments/assets/cf2b8c92-c9e3-4742-96b8-e15f43f23b49" style="max-width: 100%; height: auto; max-height: 81px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/cf2b8c92-c9e3-4742-96b8-e15f43f23b49"><img width="829" height="81" alt="Image" src="https://github.com/user-attachments/assets/cf2b8c92-c9e3-4742-96b8-e15f43f23b49" style="max-width: 100%; height: auto; max-height: 81px;; aspect-ratio: 829 / 81; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <h4>3.2 端口未被占用</h4>
 <p>命令行不返回命令</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/7392cd27-32c3-4d31-8d40-affc76b97e35"><img width="553" height="73" alt="Image" src="https://github.com/user-attachments/assets/7392cd27-32c3-4d31-8d40-affc76b97e35" style="max-width: 100%; height: auto; max-height: 73px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/7392cd27-32c3-4d31-8d40-affc76b97e35"><img width="553" height="73" alt="Image" src="https://github.com/user-attachments/assets/7392cd27-32c3-4d31-8d40-affc76b97e35" style="max-width: 100%; height: auto; max-height: 73px;; aspect-ratio: 553 / 73; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <h3>4. 查看指定PID的进程</h3>
 <p>继续输入命令</p>
 <div class="highlight highlight-source-batchfile"><pre class="notranslate">tasklist<span class="pl-k">|</span>findstr <span class="pl-s"><span class="pl-pds">"</span>5696<span class="pl-pds">"</span></span></pre></div>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f09ebf0b-443a-47e3-a48b-661cb6e8b24d"><img width="961" height="71" alt="Image" src="https://github.com/user-attachments/assets/f09ebf0b-443a-47e3-a48b-661cb6e8b24d" style="max-width: 100%; height: auto; max-height: 71px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f09ebf0b-443a-47e3-a48b-661cb6e8b24d"><img width="961" height="71" alt="Image" src="https://github.com/user-attachments/assets/f09ebf0b-443a-47e3-a48b-661cb6e8b24d" style="max-width: 100%; height: auto; max-height: 71px;; aspect-ratio: 961 / 71; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <h3>结束进程</h3>
 <div class="highlight highlight-source-batchfile"><pre class="notranslate"><span class="pl-k">taskkill</span> /T /F /PID <span class="pl-c1">5696</span></pre></div>
 <p>这样就能释放端口来使用了。</p></div>

@@ -115,7 +115,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
     <div id="content">
 <div class="markdown-body" id="postBody"><h2>前言</h2>
 <p>重装mysql过程中，在执行    <strong>net start mysql</strong>   启动mysql服务时，出现错误</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/569bdfca-818a-4a92-9640-0127aba374aa"><img width="556" height="124" alt="Image" src="https://github.com/user-attachments/assets/569bdfca-818a-4a92-9640-0127aba374aa" style="max-width: 100%; height: auto; max-height: 124px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/569bdfca-818a-4a92-9640-0127aba374aa"><img width="556" height="124" alt="Image" src="https://github.com/user-attachments/assets/569bdfca-818a-4a92-9640-0127aba374aa" style="max-width: 100%; height: auto; max-height: 124px;; aspect-ratio: 556 / 124; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <hr>
 <h2>前提</h2>
 <ul>
@@ -126,7 +126,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <hr>
 <h2>解决思路</h2>
 <p>报出找不到文件的错误，首先检查路径问题，结合论坛中其他博客，在mysql服务中发现mysql的执行路径错误。</p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d45a6a7e-fabf-41dd-99cb-e2607c1b479b"><img width="472" height="598" alt="Image" src="https://github.com/user-attachments/assets/d45a6a7e-fabf-41dd-99cb-e2607c1b479b" style="max-width: 100%; height: auto; max-height: 598px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d45a6a7e-fabf-41dd-99cb-e2607c1b479b"><img width="472" height="598" alt="Image" src="https://github.com/user-attachments/assets/d45a6a7e-fabf-41dd-99cb-e2607c1b479b" style="max-width: 100%; height: auto; max-height: 598px;; aspect-ratio: 472 / 598; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <p>明显这个路径并不是我的安装目录，依据其他大佬的博客，导致问题的原因应该是我提早设置了环境变量而没有修改cmd工作目录，导致mysql使用了错误的cmd路径</p>
 <hr>
 <h2>解决办法</h2>
@@ -134,15 +134,15 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>执行以下命令</p>
 <div class="highlight highlight-source-batchfile"><pre class="notranslate">mysqld --remove MySQL
 <span class="pl-k">cd</span> /d <span class="pl-s"><span class="pl-pds">"</span>D:\dev\MySQL\bin<span class="pl-pds">"</span></span></pre></div>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f9f46b3f-1354-42d3-add6-2a97701c9e78"><img width="541" height="52" alt="Image" src="https://github.com/user-attachments/assets/f9f46b3f-1354-42d3-add6-2a97701c9e78" style="max-width: 100%; height: auto; max-height: 52px;"></a></p>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b2b3e4b5-012a-41ad-9ea0-4a3bb445a41c"><img width="606" height="90" alt="Image" src="https://github.com/user-attachments/assets/b2b3e4b5-012a-41ad-9ea0-4a3bb445a41c" style="max-width: 100%; height: auto; max-height: 90px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f9f46b3f-1354-42d3-add6-2a97701c9e78"><img width="541" height="52" alt="Image" src="https://github.com/user-attachments/assets/f9f46b3f-1354-42d3-add6-2a97701c9e78" style="max-width: 100%; height: auto; max-height: 52px;; aspect-ratio: 541 / 52; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b2b3e4b5-012a-41ad-9ea0-4a3bb445a41c"><img width="606" height="90" alt="Image" src="https://github.com/user-attachments/assets/b2b3e4b5-012a-41ad-9ea0-4a3bb445a41c" style="max-width: 100%; height: auto; max-height: 90px;; aspect-ratio: 606 / 90; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <h3>重新安装并测试能否正常启动服务</h3>
 <div class="highlight highlight-source-batchfile"><pre class="notranslate">mysqld --install
 <span class="pl-k">net start</span> MySQL</pre></div>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/5e60d43d-342a-499e-bb0a-53c240d886b7"><img width="552" height="172" alt="Image" src="https://github.com/user-attachments/assets/5e60d43d-342a-499e-bb0a-53c240d886b7" style="max-width: 100%; height: auto; max-height: 172px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/5e60d43d-342a-499e-bb0a-53c240d886b7"><img width="552" height="172" alt="Image" src="https://github.com/user-attachments/assets/5e60d43d-342a-499e-bb0a-53c240d886b7" style="max-width: 100%; height: auto; max-height: 172px;; aspect-ratio: 552 / 172; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <p>启动成功！</p>
 <h3>到服务中检查服务路径是否正确</h3>
-<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ae94ab0f-55df-4853-804e-59fce5a2c44e"><img width="472" height="598" alt="Image" src="https://github.com/user-attachments/assets/ae94ab0f-55df-4853-804e-59fce5a2c44e" style="max-width: 100%; height: auto; max-height: 598px;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ae94ab0f-55df-4853-804e-59fce5a2c44e"><img width="472" height="598" alt="Image" src="https://github.com/user-attachments/assets/ae94ab0f-55df-4853-804e-59fce5a2c44e" style="max-width: 100%; height: auto; max-height: 598px;; aspect-ratio: 472 / 598; background-color: var(--bgColor-muted); border-radius: 6px; display: block" class="js-gh-image-fallback"></a></p>
 <p>服务路径正确！<br>
 问题解决！</p></div>
 <div style="font-size:small;margin-top:8px;float:right;"></div>
