@@ -1,5 +1,36 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>sssuer77的博客</title><link>https://sssuer77.github.io</link><description>个人博客，记录学习。</description><copyright>sssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Sun, 31 May 2026 17:01:54 +0000</lastBuildDate><managingEditor>sssuer77的博客</managingEditor><ttl>60</ttl><webMaster>sssuer77的博客</webMaster><item><title>磁盘清理/磁盘文件整理工具---WizTree</title><link>https://sssuer77.github.io/post/ci-pan-qing-li---ci-pan-wen-jian-zheng-li-gong-ju----WizTree.html</link><description>&lt;a href='https://wiztree.world/zh/download/' target='_blank'&gt;
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>sssuer77的博客</title><link>https://sssuer77.github.io</link><description>个人博客，记录学习。</description><copyright>sssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Tue, 02 Jun 2026 04:32:26 +0000</lastBuildDate><managingEditor>sssuer77的博客</managingEditor><ttl>60</ttl><webMaster>sssuer77的博客</webMaster><item><title>自定义快捷启动方式,省去找图标的烦恼!</title><link>https://sssuer77.github.io/post/zi-ding-yi-kuai-jie-qi-dong-fang-shi-%2C-sheng-qu-zhao-tu-biao-de-fan-nao-%21.html</link><description>## 前言
+苦快捷方式久矣,遂寻找了一套较为规范的,自定义CLI快捷启动方式的方法
+## 1. 创建 D:\My_CLI 文件夹
+
+&lt;img width='598' height='24' alt='Image' src='https://github.com/user-attachments/assets/fc356e9f-08ab-47b9-9f70-41c92054606a' /&gt;
+
+## 2. 在 My_CLI 文件夹中创建需要的快捷方式
+
+&lt;img width='561' height='70' alt='Image' src='https://github.com/user-attachments/assets/6ebedadc-1eae-46f8-a959-f65d1e348a54' /&gt;
+
+&lt;img width='751' height='493' alt='Image' src='https://github.com/user-attachments/assets/dc6ab14f-6a6e-4217-946a-0baa07824897' /&gt;
+
+## 3. 自定义快捷方式名称
+如将 VMware Work Station 定义为 vm
+
+&lt;img width='598' height='24' alt='Image' src='https://github.com/user-attachments/assets/9aaf35ae-5156-4c38-b0f5-6dcc35a746a6' /&gt;
+
+&lt;img width='984' height='271' alt='Image' src='https://github.com/user-attachments/assets/1dbf9a96-e30d-46f4-8f8c-3a6ec9ea4e00' /&gt;
+
+## 4. 配置环境变量
+在高级系统设置 -&gt; 环境变量 -&gt; Path 中添加环境变量 D:\My_CLI 
+
+&lt;img width='265' height='23' alt='Image' src='https://github.com/user-attachments/assets/be477bf7-1916-469d-8a32-acf3928c4081' /&gt;
+
+## 5. 添加后缀名自动匹配
+最关键的一步, Windows 创建的快捷方式默认自带 .lnk 后缀且无法删除,直接在命令行中输入 vm 是无法启动的,需输入 vm.lnk 
+而环境变量中, PATHEXT 正用于在命令行中输入文件名时,自动匹配后缀名,在列表中加入 .lnk 即可
+
+&lt;img width='648' height='231' alt='Image' src='https://github.com/user-attachments/assets/c3850d9f-df90-4b54-9673-325cd4c9bc76' /&gt;
+
+## 5. 完成配置
+至此已完成所有配置,可在命令行中直接输入自定义快捷启动方式名称,快速启动文件,也可以编写脚本,一键启动开发环境等。</description><guid isPermaLink="true">https://sssuer77.github.io/post/zi-ding-yi-kuai-jie-qi-dong-fang-shi-%2C-sheng-qu-zhao-tu-biao-de-fan-nao-%21.html</guid><pubDate>Tue, 02 Jun 2026 04:32:02 +0000</pubDate></item><item><title>磁盘清理/磁盘文件整理工具---WizTree</title><link>https://sssuer77.github.io/post/ci-pan-qing-li---ci-pan-wen-jian-zheng-li-gong-ju----WizTree.html</link><description>&lt;a href='https://wiztree.world/zh/download/' target='_blank'&gt;
 官方下载链接
 &lt;/a&gt;
 
