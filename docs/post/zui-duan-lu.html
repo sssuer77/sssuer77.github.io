@@ -390,7 +390,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 #<span class="pl-k">include</span><span class="pl-s"><span class="pl-pds">&lt;</span>algorithm<span class="pl-pds">&gt;</span></span>
 #<span class="pl-k">include</span><span class="pl-s"><span class="pl-pds">&lt;</span>queue<span class="pl-pds">&gt;</span></span>
 <span class="pl-k">using</span> <span class="pl-k">namespace</span> <span class="pl-en">std</span><span class="pl-k">;</span>
-<span class="pl-k">typedef</span> pair&lt;<span class="pl-k">int</span>,<span class="pl-k">int</span>&gt; PII; <span class="pl-c"><span class="pl-c">//</span>first存距离，second存结点编号 </span>
+<span class="pl-k">typedef</span> pair&lt;<span class="pl-k">int</span>,<span class="pl-k">int</span>&gt; <span class="pl-c1">PII</span>; <span class="pl-c"><span class="pl-c">//</span>first存距离，second存结点编号 </span>
 <span class="pl-k">const</span> <span class="pl-k">int</span> N = <span class="pl-c1">2e5</span>+<span class="pl-c1">10</span>;
 <span class="pl-k">int</span> n,m;
 <span class="pl-k">int</span> h[N],w[N],e[N],ne[N],idx; <span class="pl-c"><span class="pl-c">//</span> 邻接表的存储 </span>
@@ -407,12 +407,12 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 	<span class="pl-c1">memset</span>(dist,<span class="pl-c1">0x3f</span>,<span class="pl-k">sizeof</span>(dist)); <span class="pl-c"><span class="pl-c">//</span> 将所有距离初始化正无穷</span>
 	dist[<span class="pl-c1">1</span>] = <span class="pl-c1">0</span>;  <span class="pl-c"><span class="pl-c">//</span> 第一个点到起点的距离为 0  </span>
 	
-	priority_queue&lt;PII, vector&lt;PII&gt;, greater&lt;PII&gt;&gt; heap; <span class="pl-c"><span class="pl-c">//</span> 小根堆</span>
+	priority_queue&lt;<span class="pl-c1">PII</span>, vector&lt;<span class="pl-c1">PII</span>&gt;, greater&lt;<span class="pl-c1">PII</span>&gt;&gt; heap; <span class="pl-c"><span class="pl-c">//</span> 小根堆</span>
 	heap.<span class="pl-c1">push</span>({<span class="pl-c1">0</span>,<span class="pl-c1">1</span>}); <span class="pl-c"><span class="pl-c">//</span>把 1 号点放入堆中 </span>
 	
 	<span class="pl-k">while</span>(heap.<span class="pl-c1">size</span>()) <span class="pl-c"><span class="pl-c">//</span> 堆不空</span>
 	{
-	   	PII t = heap.<span class="pl-c1">top</span>(); <span class="pl-c"><span class="pl-c">//</span>找到当前距离最小的点</span>
+	   	<span class="pl-c1">PII</span> t = heap.<span class="pl-c1">top</span>(); <span class="pl-c"><span class="pl-c">//</span>找到当前距离最小的点</span>
 		heap.<span class="pl-c1">pop</span>();
 		
 		<span class="pl-k">int</span> ver = t.<span class="pl-smi">second</span>,distance = t.<span class="pl-smi">first</span>; <span class="pl-c"><span class="pl-c">//</span> ver为编号，distance为距离</span>

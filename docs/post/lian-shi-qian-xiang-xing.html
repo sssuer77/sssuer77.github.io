@@ -93,13 +93,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <p>由于本人 <del>不会写</del> 懒得写邻接表，因此在做题时大量使用链式前向星，在这里放一个自己的模板。<br>
 注释：head数组存放的是与每个节点相连的第一条边的编号；cnt是边的编号，初始值自定；a是存放边的数组；结构体edge中to是边连接的下一个节点，nxt是与这条边同一个起始节点的下一条边的编号，w是权值；add_edge函数是头插法。</p>
 <div class="highlight highlight-source-c++"><pre class="notranslate"><span class="pl-c"><span class="pl-c">//</span>链式前向星</span>
-<span class="pl-k">const</span> <span class="pl-k">int</span> MAXN=<span class="pl-c1">1e6</span>+<span class="pl-c1">7</span>;
-<span class="pl-k">int</span> head[MAXN];
+<span class="pl-k">const</span> <span class="pl-k">int</span> <span class="pl-c1">MAXN</span>=<span class="pl-c1">1e6</span>+<span class="pl-c1">7</span>;
+<span class="pl-k">int</span> head[<span class="pl-c1">MAXN</span>];
 <span class="pl-k">int</span> cnt=<span class="pl-c1">0</span>;
 <span class="pl-k">struct</span> <span class="pl-en">edge</span>{
 	<span class="pl-k">int</span> to , nxt , w;
 };
-edge a[MAXN];
+edge a[<span class="pl-c1">MAXN</span>];
 <span class="pl-k">void</span> <span class="pl-en">add_edge</span>(<span class="pl-k">int</span> u , <span class="pl-k">int</span> v , <span class="pl-k">int</span> w) {
 	a[cnt].<span class="pl-smi">w</span> = w;
 	a[cnt].<span class="pl-smi">to</span> = v;

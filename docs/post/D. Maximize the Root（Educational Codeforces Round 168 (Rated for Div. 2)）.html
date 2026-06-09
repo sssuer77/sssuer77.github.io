@@ -95,13 +95,13 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <span class="pl-k">int</span> u[<span class="pl-c1">200005</span>];
 <span class="pl-k">int</span> n;
 <span class="pl-c"><span class="pl-c">//</span>链式前向星</span>
-<span class="pl-k">const</span> <span class="pl-k">int</span> MAXN = <span class="pl-c1">2e5</span> + <span class="pl-c1">7</span>;
-<span class="pl-k">int</span> head[MAXN];
+<span class="pl-k">const</span> <span class="pl-k">int</span> <span class="pl-c1">MAXN</span> = <span class="pl-c1">2e5</span> + <span class="pl-c1">7</span>;
+<span class="pl-k">int</span> head[<span class="pl-c1">MAXN</span>];
 <span class="pl-k">int</span> cnt = <span class="pl-c1">1</span>;
 <span class="pl-k">struct</span> <span class="pl-en">edge</span> {
     <span class="pl-k">int</span> to, nxt;
 };
-edge a[MAXN];
+edge a[<span class="pl-c1">MAXN</span>];
 <span class="pl-k">void</span> <span class="pl-en">add_edge</span>(<span class="pl-k">int</span> u, <span class="pl-k">int</span> v) {
     <span class="pl-c"><span class="pl-c">//</span>a[cnt].w = w;</span>
     a[cnt].<span class="pl-smi">to</span> = v;
