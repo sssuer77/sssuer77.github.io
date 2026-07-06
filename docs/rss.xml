@@ -1,5 +1,27 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>sssuer77的博客</title><link>https://sssuer77.github.io</link><description>个人博客，记录学习。</description><copyright>sssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Tue, 02 Jun 2026 06:43:25 +0000</lastBuildDate><managingEditor>sssuer77的博客</managingEditor><ttl>60</ttl><webMaster>sssuer77的博客</webMaster><item><title>VMware 安装使用 Linux</title><link>https://sssuer77.github.io/post/VMware%20-an-zhuang-shi-yong-%20Linux.html</link><description>## 1. VMware 的安装(建议安装稳定版本)
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>sssuer77的博客</title><link>https://sssuer77.github.io</link><description>个人博客，记录学习。</description><copyright>sssuer77的博客</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://avatars.githubusercontent.com/u/178136927?v=4</url><title>avatar</title><link>https://sssuer77.github.io</link></image><lastBuildDate>Mon, 06 Jul 2026 09:08:06 +0000</lastBuildDate><managingEditor>sssuer77的博客</managingEditor><ttl>60</ttl><webMaster>sssuer77的博客</webMaster><item><title>IDM下载外网文件权限被拒绝问题</title><link>https://sssuer77.github.io/post/IDM-xia-zai-wai-wang-wen-jian-quan-xian-bei-ju-jue-wen-ti.html</link><description>## 遇到问题
+新配置的IDM在下载外网文件时出现如下报错,原因是没有配置代理服务器
+
+&lt;img width='345' height='236' alt='Image' src='https://github.com/user-attachments/assets/c2741b04-095c-4d3e-bd56-3ddf68c2ca2d' /&gt;
+
+## 问题解决
+### 在IDM主菜单中,选择 **下载/选项** 
+
+&lt;img width='800' height='460' alt='Image' src='https://github.com/user-attachments/assets/bc911c4f-b5e8-4e3d-b343-683ab03fd66b' /&gt;
+
+### 选择代理服务器选项卡
+
+&lt;img width='502' height='683' alt='Image' src='https://github.com/user-attachments/assets/548ccc5d-0710-49b3-baab-d57b5fa5fad3' /&gt;
+
+
+### 配置代理服务器
+
+&lt;img width='502' height='683' alt='Image' src='https://github.com/user-attachments/assets/d46df15f-3447-46b3-bfbb-1128fff09b0b' /&gt;
+
+
+
+
+。</description><guid isPermaLink="true">https://sssuer77.github.io/post/IDM-xia-zai-wai-wang-wen-jian-quan-xian-bei-ju-jue-wen-ti.html</guid><pubDate>Mon, 06 Jul 2026 09:07:33 +0000</pubDate></item><item><title>VMware 安装使用 Linux</title><link>https://sssuer77.github.io/post/VMware%20-an-zhuang-shi-yong-%20Linux.html</link><description>## 1. VMware 的安装(建议安装稳定版本)
 
 首先检查虚拟化技术是否启用
 
